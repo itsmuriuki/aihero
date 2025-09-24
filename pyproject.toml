@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "aihero"
+version = "0.1.0"
+description = ""
+authors = ["itsmuriuki <grdmuriuki@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+requests = "^2.32.5"
+python-frontmatter = "^1.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
