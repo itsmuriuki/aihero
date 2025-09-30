@@ -1,0 +1,152 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "What should I do if I'm encountering a 'ModuleNotFoundError' related to psycopg while using Python?",
+          "timestamp": "2025-09-30T19:16:35.522708+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"ModuleNotFoundError psycopg\"}",
+          "tool_call_id": "call_9X1MDN6PrRYNLkVdcCkh0ucs",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 234,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 20,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:16:36+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CLa7wVzAZlG4wfafC6dplMwQuSsEw",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "52858dfd98",
+              "images": [
+                {
+                  "description": "image #1",
+                  "id": "image_1",
+                  "path": "images/data-engineering-zoomcamp/image_b7e005cb.png"
+                },
+                {
+                  "description": "image #2",
+                  "id": "image_2",
+                  "path": "images/data-engineering-zoomcamp/image_c56a8539.png"
+                }
+              ],
+              "question": "Postgres - ModuleNotFoundError: No module named 'psycopg2'",
+              "sort_order": 76,
+              "content": "Issue:\n\n```\nModuleNotFoundError: No module named 'psycopg2'\n```\n\n<IMAGE:image_1>\n\n<IMAGE:image_2>\n\nSolution:\n\n1. Install psycopg2-binary:\n   \n   ```bash\n   pip install psycopg2-binary\n   ```\n\n2. If psycopg2-binary is already installed, update it:\n   \n   ```bash\n   pip install psycopg2-binary --upgrade\n   ```\n\n3. Other methods if the above fails:\n\n   - If the error persists, update conda:\n     \n     ```bash\n     conda update -n base -c defaults conda\n     ```\n\n   - Alternatively, update pip:\n     \n     ```bash\n     pip install --upgrade pip\n     ```\n\n   - Reinstall psycopg:\n     \n     - Uninstall the psycopg package.\n     - Update conda or pip.\n     - Reinstall psycopg using pip.\n\n   - If an error shows about `pg_config` not being found, install PostgreSQL:\n     \n     - On Mac, use:\n       \n       ```bash\n       brew install postgresql\n       ```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/076_52858dfd98_postgres-modulenotfounderror-no-module-named-psyco.md"
+            },
+            {
+              "id": "7f7aa5f5e6",
+              "question": "PGCLI - After installing PGCLI and checking with `pgcli --help` we get the error: `ImportError: no pq wrapper available`",
+              "sort_order": 71,
+              "content": "The error persists because the psycopg library cannot find the required libpq library. Ensure the required PostgreSQL client library is installed:\n\n```bash\nsudo apt install libpq-dev\n```\n\nRebuild psycopg:\n\n1. Uninstall the existing packages:\n   \n   ```bash\n   pip uninstall psycopg psycopg_binary psycopg_c -y\n   ```\n\n2. Reinstall psycopg:\n   \n   ```bash\n   pip install psycopg --no-binary psycopg\n   ```\n\nThe issue should be resolved by now. However, if you still encounter the error:\n\n`ModuleNotFoundError: No module named 'psycopg2'`\n\nThen run the following:\n\n```bash\npip install psycopg2-binary\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/071_7f7aa5f5e6_pgcli-after-installing-pgcli-and-checking-with-pgc.md"
+            },
+            {
+              "id": "646e2067e8",
+              "question": "Python - ModuleNotFoundError: No module named 'pysqlite2'",
+              "sort_order": 83,
+              "content": "```\nImportError: DLL load failed while importing _sqlite3: The specified module could not be found. \nModuleNotFoundError: No module named 'pysqlite2'\n```\n\nThe issue may arise due to the absence of `sqlite3.dll` in the path `\".\\Anaconda\\Dlls\\\"`.\n\nTo resolve the issue:\n\n1. Copy the `sqlite3.dll` file from `\\Anaconda3\\Library\\bin`.\n2. Paste the file into the `\".\\Anaconda\\Dlls\\\"` directory.\n\nThis solution applies if you are using Anaconda.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/083_646e2067e8_python-modulenotfounderror-no-module-named-pysqlit.md"
+            },
+            {
+              "id": "1f21373dff",
+              "question": "Python - SQLAlchemy: NoSuchModuleError: Can't load plugin: sqlalchemy.dialects:postgresql.psycopg",
+              "sort_order": 92,
+              "content": "Error raised during the Jupyter notebook\u2019s cell execution:\n\n```python\nconn_string = \"postgresql+psycopg://root:root@localhost:5432/ny_taxi\"\n\nengine = create_engine(conn_string)\n```\n\nSolution: \n\nWe had a scenario of a virtual environment (created by PyCharm) being run on top of another virtual environment (on conda). The solution was:\n\n1. Remove the `.venv`.\n2. Create a new virtual environment with conda:\n   \n   ```bash\n   conda create -n pyingest python=3.12\n   ```\n\n3. Install the required dependencies:\n   \n   ```bash\n   pip install pandas sqlalchemy psycopg2-binary jupyterlab\n   ```\n\n4. Re-execute the code.\n\nFor `psycopg2`, the connection string should be:\n\n```python\npostgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}\n```\n\nReference - Kayla Tinker 1/14/25",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/092_1f21373dff_python-sqlalchemy-nosuchmoduleerror-cant-load-plug.md"
+            },
+            {
+              "id": "d87bb0e38f",
+              "question": "Py4JJavaError - ModuleNotFoundError: No module named 'py4j' while executing `import pyspark`",
+              "sort_order": 13,
+              "content": "To resolve the `ModuleNotFoundError: No module named 'py4j'` when executing `import pyspark`, follow these steps:\n\n1. **Check for Py4J File Version:**\n   - Run the command:\n     ```bash\n     ls ${SPARK_HOME}/python/lib/\n     ```\n   - Note the version of the `py4j` file.\n\n2. **Update the `PYTHONPATH`:**\n   - Use the version identified above to update the `PYTHONPATH` accordingly. For example:\n     ```bash\n     export PYTHONPATH=\"${SPARK_HOME}/python/lib/py4j-0.10.9.3-src.zip:$PYTHONPATH\"\n     ```\n   - Ensure that the version matches the filename under `${SPARK_HOME}/python/lib/`.\n\n3. **Verify Spark's Py4J Version:**\n   - Check the Py4J version of the Spark you're using from the [Apache Spark documentation](https://spark.apache.org/docs/latest/api/python/getting_started/install.html).\n\n4. **Install Py4J (if needed):**\n   - If the above steps do not resolve the issue, run:\n     ```bash\n     pip install py4j\n     ```\n   - This can resolve version mismatches or missing installations.\n\nThis should address the `ModuleNotFoundError` for Py4J when using PySpark. Ensure all versions are consistent and correct.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-5/013_d87bb0e38f_py4jjavaerror-modulenotfounderror-no-module-named.md"
+            }
+          ],
+          "tool_call_id": "call_9X1MDN6PrRYNLkVdcCkh0ucs",
+          "metadata": null,
+          "timestamp": "2025-09-30T19:16:37.257470+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "If you're encountering a `ModuleNotFoundError` related to `psycopg`, here are the steps you can take to resolve the issue:\n\n1. **Install psycopg2-binary**:\n   ```bash\n   pip install psycopg2-binary\n   ```\n\n2. **Update psycopg2-binary** (if it's already installed):\n   ```bash\n   pip install psycopg2-binary --upgrade\n   ```\n\n3. **If issues persist**:\n   - Update conda:\n     ```bash\n     conda update -n base -c defaults conda\n     ```\n   - Update pip:\n     ```bash\n     pip install --upgrade pip\n     ```\n   - Reinstall psycopg:\n     - Uninstall the existing psycopg package:\n       ```bash\n       pip uninstall psycopg psycopg_binary psycopg_c -y\n       ```\n     - Reinstall psycopg:\n       ```bash\n       pip install psycopg --no-binary psycopg\n       ```\n\n4. **If you encounter an error related to `pg_config` not being found**, install PostgreSQL:\n   - On macOS, you can use:\n     ```bash\n     brew install postgresql\n     ```\n\nFollowing these steps should help you resolve the `ModuleNotFoundError` for `psycopg`. If you have further issues, ensuring that your environment is correctly set up (like using the appropriate environment for Python) can also be beneficial.\n\nFor reference, this information can be found in the course materials here: [Postgres - ModuleNotFoundError: No module named 'psycopg2'](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-1/076_52858dfd98_postgres-modulenotfounderror-no-module-named-psyco.md).",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1917,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 396,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:16:37+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CLa7xkXB8B2el95m36i6r4XTWrw9i",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

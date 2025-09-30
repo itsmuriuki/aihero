@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent",
+  "system_prompt": "You are a helpful assistant for a course. \n\nAlways search for relevant information before answering. \nIf the first search doesn't give you enough information, try different search terms.\n\nMake multiple searches if needed to provide comprehensive answers.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "when is the next course openning?",
+          "timestamp": "2025-09-30T19:03:17.436657+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course. \n\nAlways search for relevant information before answering. \nIf the first search doesn't give you enough information, try different search terms.\n\nMake multiple searches if needed to provide comprehensive answers.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"next course opening\"}",
+          "tool_call_id": "call_NoLb8RjY4TUotEnaKT3606rF",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 143,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 16,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:03:19+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CLZv5nognQXuJCm0uT5fE5Ms4wL7a",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "9e508f2212",
+              "question": "Course: When does the course start?",
+              "sort_order": 1,
+              "content": "The next cohort starts January 13th, 2025. More info at [DTC](https://datatalks.club/blog/guide-to-free-online-courses-at-datatalks-club.html).\n\n- Register before the course starts using this [link](https://airtable.com/shr6oVXeQvSI5HuWD).\n- Join the [course Telegram channel with announcements](https://t.me/dezoomcamp).\n- Don\u2019t forget to register in DataTalks.Club's Slack and join the channel.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/001_9e508f2212_course-when-does-the-course-start.md"
+            },
+            {
+              "id": "068529125b",
+              "question": "Course - Can I follow the course after it finishes?",
+              "sort_order": 8,
+              "content": "Yes, we will keep all the materials available, so you can follow the course at your own pace after it finishes.\n\nYou can also continue reviewing the homeworks and prepare for the next cohort. You can also start working on your final capstone project.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/008_068529125b_course-can-i-follow-the-course-after-it-finishes.md"
+            },
+            {
+              "id": "bfafa427b3",
+              "question": "Course: What are the prerequisites for this course?",
+              "sort_order": 2,
+              "content": "To get the most out of this course, you should have:\n\n- Basic coding experience\n- Familiarity with SQL\n- Experience with Python (helpful but not required)\n\nNo prior data engineering experience is necessary. See [Readme on GitHub](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/README.md#prerequisites).",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/002_bfafa427b3_course-what-are-the-prerequisites-for-this-course.md"
+            },
+            {
+              "id": "5b54567e89",
+              "question": "Opening an HTML file with a Windows browser from Linux running on WSL",
+              "sort_order": 44,
+              "content": "If you\u2019re running Linux on Windows Subsystem for Linux (WSL) 2, you can open HTML files from the guest (Linux) with any Internet Browser installed on the host (Windows). Just install [wslu](https://wslutiliti.es/wslu/install.html) and open the page using `wslview`:\n\n```bash\nwslview index.html\n```\n\nYou can customize which browser to use by setting the `BROWSER` environment variable first. For example:\n\n```bash\nexport BROWSER='/mnt/c/Program Files/Firefox/firefox.exe'\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/044_5b54567e89_opening-an-html-file-with-a-windows-browser-from-l.md"
+            },
+            {
+              "id": "33fc260cd8",
+              "question": "Course: What can I do before the course starts?",
+              "sort_order": 5,
+              "content": "Start by installing and setting up all the dependencies and requirements:\n\n- Google Cloud account\n- Google Cloud SDK\n- Python 3 (installed with Anaconda)\n- Terraform\n- Git\n\nLook over the prerequisites and syllabus to see if you are comfortable with these subjects.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/005_33fc260cd8_course-what-can-i-do-before-the-course-starts.md"
+            }
+          ],
+          "tool_call_id": "call_NoLb8RjY4TUotEnaKT3606rF",
+          "metadata": null,
+          "timestamp": "2025-09-30T19:03:20.377980+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course. \n\nAlways search for relevant information before answering. \nIf the first search doesn't give you enough information, try different search terms.\n\nMake multiple searches if needed to provide comprehensive answers.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "The next course is scheduled to start on **January 13th, 2025**. \n\nFor more information, you can visit the [DTC blog](https://datatalks.club/blog/guide-to-free-online-courses-at-datatalks-club.html) and register using this [link](https://airtable.com/shr6oVXeQvSI5HuWD). Additionally, you can join the [course Telegram channel for announcements](https://t.me/dezoomcamp) and make sure to register in DataTalks.Club's Slack to stay updated.",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 917,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 121,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:03:20+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CLZv68F7oUu2qLZvHBJRjmyetObnq",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "user"
+}

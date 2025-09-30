@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "What is the recommended way to manage sensitive credentials when pushing code to git?",
+          "timestamp": "2025-09-30T19:16:58.294413+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"manage sensitive credentials git\"}",
+          "tool_call_id": "call_98PcpQ9zMkTjp8OboVAzRvI8",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 226,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 17,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:16:58+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CLa8Ipvjj7fyVMRi4KUffJ8zV6QYp",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "d2add610e3",
+              "question": "How do I set up credentials to run dlt in my environment (not Google Colab)?",
+              "sort_order": 9,
+              "content": "You can set up credentials for `dlt` in several ways. Here are the two most common methods:\n\n### Environment Variables (Easiest)\n\nSet credentials via environment variables. For example, to configure Google Cloud credentials. This method avoids hardcoding secrets in your code and works seamlessly with most environments.\n\n### Configuration Files (Recommended for Local Use)\n\n- Use `.dlt/secrets.toml` for sensitive credentials and `.dlt/config.toml` for non-sensitive configurations.\n- Example for Google Cloud in `secrets.toml`:\n\n```toml\n[google_cloud]\nservice_account_key = \"YOUR_SERVICE_ACCOUNT_KEY\"\n```\n\n- Place these files in the `.dlt` folder of your project.\n\n### Additional Notes:\n\n- Never commit `secrets.toml` to version control (add it to `.gitignore`).\n- Credentials can also be loaded via vaults, AWS Parameter Store, or custom setups.\n\nFor additional methods and detailed information, refer to the [official dlt documentation](https://dlthub.com/docs/general-usage/credentials/)",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/workshop-1-dlthub/009_d2add610e3_how-do-i-set-up-credentials-to-run-dlt-in-my-envir.md"
+            },
+            {
+              "id": "dc06a38bc6",
+              "question": "How do I use Git / GitHub for this course?",
+              "sort_order": 42,
+              "content": "After you create a GitHub account, clone the course repo to your local machine using the process outlined in this video:\n\n[Git for Everybody: How to Clone a Repository from GitHub](https://www.youtube.com/watch?v=CKcqniGu3tA).\n\nHaving this local repository on your computer will make it easy to access the instructors\u2019 code and make pull requests if you want to add your own notes or make changes to the course content.\n\nYou will probably also create your own repositories to host your notes and versions of files. Here is a great tutorial that shows you how to do this:\n\n[How to Create a Git Repository](https://www.atlassian.com/git/tutorials/setting-up-a-repository).\n\nRemember to ignore large databases, .csv, and .gz files, and other files that should not be saved to a repository. Use `.gitignore` for this:\n\n[.gitignore file](https://www.atlassian.com/git/tutorials/saving-changes/gitignore).\n\n**Important:**\n\n**NEVER store passwords or keys in a git repo** (even if the repo is set to private). Put files containing sensitive information (.env, secret.json, etc.) in your `.gitignore`.\n\nThis is also a great resource: [Dangit, Git!?!](https://dangitgit.com/)",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/042_dc06a38bc6_how-do-i-use-git-github-for-this-course.md"
+            },
+            {
+              "id": "fa8cbc8f40",
+              "question": "Terraform: google provider requires credentials.",
+              "sort_order": 125,
+              "content": "To ensure the sensitivity of the credentials file, use the following configuration:\n\n```hcl\nprovider \"google\" {\n  project     = var.projectId\n  credentials = file(\"${var.gcpkey}\")\n  #region      = var.region\n  zone = var.zone\n}\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/125_fa8cbc8f40_terraform-google-provider-requires-credentials.md"
+            },
+            {
+              "id": "1ba19ed6a0",
+              "question": "Git Bash: Backslash as an escape character in Git Bash for Windows",
+              "sort_order": 7,
+              "content": "For those who wish to use the backslash as an escape character in Git Bash for Windows, type the following in the terminal:\n\n```bash\nbash.escapeChar=\\\n```\n\n(Note: There is no need to include this in your `.bashrc` file.)",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/007_1ba19ed6a0_git-bash-backslash-as-an-escape-character-in-git-b.md"
+            },
+            {
+              "id": "fb43c209d9",
+              "question": "How to set environment variable easily for any credentials",
+              "sort_order": 74,
+              "content": "If you need to securely set up credentials for a project and intend to push it to a git repository, using an environment variable is a recommended option.\n\nFor example, for scripts like `web_to_gcs.py` or `git_csv_to_gcs.py`, you may need to set these variables:\n\n- `GOOGLE_APPLICATION_CREDENTIALS`\n- `GCP_GCS_BUCKET`\n\nThe easiest option to manage this is to use a `.env` file with [dotenv](https://pypi.org/project/python-dotenv/).\n\nTo install and utilize this package, follow these steps:\n\n1. Install `python-dotenv`:\n\n   ```bash\n   pip install python-dotenv\n   ```\n\n2. Add the following code to inject these variables into your project:\n\n   ```python\n   from dotenv import load_dotenv\n   import os\n\n   # Load environment variables from .env file\n   load_dotenv()\n\n   # Now you can access environment variables like GCP_GCS_BUCKET and GOOGLE_APPLICATION_CREDENTIALS\n   credentials_path = os.getenv(\"GOOGLE_APPLICATION_CREDENTIALS\")\n   BUCKET = os.environ.get(\"GCP_GCS_BUCKET\")\n   ```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/074_fb43c209d9_how-to-set-environment-variable-easily-for-any-cre.md"
+            }
+          ],
+          "tool_call_id": "call_98PcpQ9zMkTjp8OboVAzRvI8",
+          "metadata": null,
+          "timestamp": "2025-09-30T19:16:59.067969+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "When managing sensitive credentials while pushing code to git, it is important to follow best practices to ensure that these credentials are never exposed publicly. Here are some recommended methods:\n\n1. **Environment Variables**: This is the easiest way to manage credentials. Set sensitive information as environment variables in your development environment. For example, you can configure Google Cloud credentials by setting the `GOOGLE_APPLICATION_CREDENTIALS` variable. This method avoids hardcoding secrets into your code.\n\n2. **Configuration Files**: You can use a file such as `.dlt/secrets.toml` for sensitive credentials, which should not be committed to your version control. Instead, add it to your `.gitignore` file to prevent it from being tracked. An example configuration might look like:\n   ```toml\n   [google_cloud]\n   service_account_key = \"YOUR_SERVICE_ACCOUNT_KEY\"\n   ```\n\n3. **.gitignore**: Always use a `.gitignore` file to exclude files that contain sensitive information (e.g., `.env`, `secret.json`). This prevents accidental commits of sensitive data to your repository.\n\n4. **Use .env files with dotenv**: You can also create a `.env` file to manage environment variables in your project. Using the `python-dotenv` package, you can load these variables into your code, ensuring credentials are not hardcoded into your scripts. For example:\n   ```python\n   from dotenv import load_dotenv\n   import os\n\n   load_dotenv()\n   credentials_path = os.getenv(\"GOOGLE_APPLICATION_CREDENTIALS\") \n   BUCKET = os.environ.get(\"GCP_GCS_BUCKET\")\n   ```\n\n5. **Never store passwords or keys directly in the repo**: Even in private repositories, it is crucial to avoid storing sensitive credentials in your codebase.\n\nFor further details, you can refer to the following sources: \n\n- [How to set up credentials to run dlt in my environment](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/workshop-1-dlthub/009_d2add610e3_how-do-i-set-up-credentials-to-run-dlt-in-my-envir.md)\n- [How do I use Git / GitHub for this course?](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/general/042_dc06a38bc6_how-do-i-use-git-github-for-this-course.md)\n- [How to set environment variable easily for any credentials](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-4/074_fb43c209d9_how-to-set-environment-variable-easily-for-any-cre.md)",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1520,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 573,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:16:59+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CLa8JiGxSoik9fWtT969ukg95Ihj9",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

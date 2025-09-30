@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "Can I use my local machine for the data engineering course instead of using GitHub Codespaces or GCP VM?",
+          "timestamp": "2025-09-30T19:17:33.805791+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"local machine data engineering course\"}",
+          "tool_call_id": "call_R9KeGKNrKCFvb4nFCr0xOq12",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 234,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 18,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:17:35+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CLa8t2TPbPjJc3LyGPLGq8HTacx9a",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "4f1fe161b1",
+              "question": "Environment - Should I use my local machine, GCP, or GitHub Codespaces for my environment?",
+              "sort_order": 22,
+              "content": "You can set it up on your laptop or PC if you prefer to work locally. However, Windows users might face some challenges.\n\nIf you prefer to work on the local machine, you can start with the Week 1 Introduction to Docker.\n\nAlternatively, if you prefer to set up a virtual machine, consider the following:\n\n- **Using GitHub Codespaces**\n- **Setting up the environment on a cloud VM**: Refer to [this video](https://www.youtube.com/watch?v=ae-CV2KfoN0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb) for guidance.\n\nWorking on a virtual machine is beneficial if you have different devices for home and office, allowing you to work virtually anywhere.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/022_4f1fe161b1_environment-should-i-use-my-local-machine-gcp-or-g.md"
+            },
+            {
+              "id": "bfafa427b3",
+              "question": "Course: What are the prerequisites for this course?",
+              "sort_order": 2,
+              "content": "To get the most out of this course, you should have:\n\n- Basic coding experience\n- Familiarity with SQL\n- Experience with Python (helpful but not required)\n\nNo prior data engineering experience is necessary. See [Readme on GitHub](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/README.md#prerequisites).",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/002_bfafa427b3_course-what-are-the-prerequisites-for-this-course.md"
+            },
+            {
+              "id": "9e508f2212",
+              "question": "Course: When does the course start?",
+              "sort_order": 1,
+              "content": "The next cohort starts January 13th, 2025. More info at [DTC](https://datatalks.club/blog/guide-to-free-online-courses-at-datatalks-club.html).\n\n- Register before the course starts using this [link](https://airtable.com/shr6oVXeQvSI5HuWD).\n- Join the [course Telegram channel with announcements](https://t.me/dezoomcamp).\n- Don\u2019t forget to register in DataTalks.Club's Slack and join the channel.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/001_9e508f2212_course-when-does-the-course-start.md"
+            },
+            {
+              "id": "86251abcdf",
+              "question": "Any books or additional resources you recommend?",
+              "sort_order": 38,
+              "content": "Yes to both! Check out this document: [Awesome Data Engineering Resources](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/awesome-data-engineering.md)",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/038_86251abcdf_any-books-or-additional-resources-you-recommend.md"
+            },
+            {
+              "id": "8ac65b2225",
+              "question": "Course: Which playlist on YouTube should I refer to?",
+              "sort_order": 10,
+              "content": "All the main videos are stored in the \"DATA ENGINEERING ZOOMCAMP\" main playlist. The GitHub repository is updated to include each video with a thumbnail, linking directly to the relevant playlist.\n\nRefer to the Main Playlist for the core content, and then check specific year playlists for additional videos such as office hours.\n\n- [Data Engineering Zoomcamp](https://www.youtube.com/playlist?list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)\n- [Data Engineering Zoomcamp 2022](https://www.youtube.com/playlist?list=PL3MmuxUbc_hKVX8VnwWCPaWlIHf1qmg8s)\n- [Data Engineering Zoomcamp 2023](https://www.youtube.com/playlist?list=PL3MmuxUbc_hJjEePXIdE-LVUx_1ZZjYGW)\n- Data Engineering Bootcamp 2024\n- [Data Engineering Bootcamp 2025](https://www.youtube.com/playlist?list=PL3MmuxUbc_hJZdpLpRHp7dg6EOx828q6y)\n- [DE Zoomcamp 2025 (Module 2 Kestra)](https://www.youtube.com/playlist?list=PLEK3H8YwZn1oPPShk2p5k3E9vO-gPnUCf)",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/010_8ac65b2225_course-which-playlist-on-youtube-should-i-refer-to.md"
+            }
+          ],
+          "tool_call_id": "call_R9KeGKNrKCFvb4nFCr0xOq12",
+          "metadata": null,
+          "timestamp": "2025-09-30T19:17:36.125363+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "Yes, you can use your local machine for the data engineering course. However, keep in mind that Windows users might encounter some challenges. If you choose to work locally, you can start with the Week 1 Introduction to Docker to help set up your environment.\n\nIf you prefer more flexibility, you might consider using GitHub Codespaces or setting up a cloud virtual machine (VM) to avoid potential issues with local setups.\n\nFor more information, you can refer to the source: [Environment - Should I use my local machine, GCP, or GitHub Codespaces for my environment?](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/general/022_4f1fe161b1_environment-should-i-use-my-local-machine-gcp-or-g.md)",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1298,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 167,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:17:36+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CLa8u6myKlXYBGWyuaFbBl2sZrvC4",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

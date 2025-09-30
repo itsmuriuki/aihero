@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "How can I set up my Google Cloud credentials in my HCL configuration?",
+          "timestamp": "2025-09-30T19:16:25.104742+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"Google Cloud credentials HCL configuration\"}",
+          "tool_call_id": "call_8Zg8cCiXAYIg9B8qSda1Tnbe",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 226,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 19,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:16:25+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CLa7lrZvk2Y6JPMcL0UWjzl0PqQUo",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "fa8cbc8f40",
+              "question": "Terraform: google provider requires credentials.",
+              "sort_order": 125,
+              "content": "To ensure the sensitivity of the credentials file, use the following configuration:\n\n```hcl\nprovider \"google\" {\n  project     = var.projectId\n  credentials = file(\"${var.gcpkey}\")\n  #region      = var.region\n  zone = var.zone\n}\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/125_fa8cbc8f40_terraform-google-provider-requires-credentials.md"
+            },
+            {
+              "id": "d2add610e3",
+              "question": "How do I set up credentials to run dlt in my environment (not Google Colab)?",
+              "sort_order": 9,
+              "content": "You can set up credentials for `dlt` in several ways. Here are the two most common methods:\n\n### Environment Variables (Easiest)\n\nSet credentials via environment variables. For example, to configure Google Cloud credentials. This method avoids hardcoding secrets in your code and works seamlessly with most environments.\n\n### Configuration Files (Recommended for Local Use)\n\n- Use `.dlt/secrets.toml` for sensitive credentials and `.dlt/config.toml` for non-sensitive configurations.\n- Example for Google Cloud in `secrets.toml`:\n\n```toml\n[google_cloud]\nservice_account_key = \"YOUR_SERVICE_ACCOUNT_KEY\"\n```\n\n- Place these files in the `.dlt` folder of your project.\n\n### Additional Notes:\n\n- Never commit `secrets.toml` to version control (add it to `.gitignore`).\n- Credentials can also be loaded via vaults, AWS Parameter Store, or custom setups.\n\nFor additional methods and detailed information, refer to the [official dlt documentation](https://dlthub.com/docs/general-usage/credentials/)",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/workshop-1-dlthub/009_d2add610e3_how-do-i-set-up-credentials-to-run-dlt-in-my-envir.md"
+            },
+            {
+              "id": "4ecc97beb5",
+              "question": "How to set credentials in Google Colab notebook to connect to BigQuery",
+              "sort_order": 8,
+              "content": "In the secrets sidebar, create a secret `BIGQUERY_CREDENTIALS` with the value being your Google Cloud service account key. Then load it with:\n\n```python\nimport os\nfrom google.colab import userdata\n\nos.environ[\"DESTINATION__BIGQUERY__CREDENTIALS\"] = userdata.get('BIGQUERY_CREDENTIALS')\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/workshop-1-dlthub/008_4ecc97beb5_how-to-set-credentials-in-google-colab-notebook-to.md"
+            },
+            {
+              "id": "a697cb2dee",
+              "question": "GCP: Do I need to delete my instance in Google Cloud?",
+              "sort_order": 101,
+              "content": "[In this lecture](https://www.youtube.com/watch?v=ae-CV2KfoN0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb), Alexey deleted his instance in Google Cloud. Do I have to do it?\n\nNo, do not delete your instance in Google Cloud Platform. Otherwise, you will have to set it up again for the week 1 readings.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/101_a697cb2dee_gcp-do-i-need-to-delete-my-instance-in-google-clou.md"
+            },
+            {
+              "id": "8f9f91b4de",
+              "question": "GCP - Windows Google Cloud SDK install issue:",
+              "sort_order": 105,
+              "content": "If you are encountering installation trouble with the Google Cloud SDK on Windows and receiving the following error:\n\n```\nThese credentials will be used by any library that requests Application Default Credentials (ADC).\n\nWARNING:\n\nCannot find a quota project to add to ADC. You might receive a \"quota exceeded\" or \"API not enabled\" error. Run $ gcloud auth application-default set-quota-project to add a quota project.\n```\n\nTry these steps:\n\n1. Reinstall the SDK using the unzip file \"install.bat\".\n2. Check the installation by running `gcloud version`.\n3. Run `gcloud init` to set up your project.\n4. Execute `gcloud auth application-default login`.\n\nFor detailed instructions, refer to the following guide: [Windows SDK Installation Guide](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/1_terraform_gcp/windows.md)",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/105_8f9f91b4de_gcp-windows-google-cloud-sdk-install-issue.md"
+            }
+          ],
+          "tool_call_id": "call_8Zg8cCiXAYIg9B8qSda1Tnbe",
+          "metadata": null,
+          "timestamp": "2025-09-30T19:16:26.650367+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "To set up your Google Cloud credentials in your HCL (HashiCorp Configuration Language) configuration when using Terraform, you can use the following configuration snippet:\n\n```hcl\nprovider \"google\" {\n  project     = var.projectId\n  credentials = file(\"${var.gcpkey}\")\n  #region      = var.region\n  zone        = var.zone\n}\n```\n\nIn this snippet:\n- `var.projectId` is a variable that should hold your Google Cloud project ID.\n- `var.gcpkey` should point to the path of your service account key JSON file, which contains your credentials.\n- You can also define the `region` and `zone` if required.\n\nFor more detailed examples and context, refer to the source material: [Terraform: google provider requires credentials](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-1/125_fa8cbc8f40_terraform-google-provider-requires-credentials.md).",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1296,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 206,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:16:27+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CLa7nasdBuRwzzWxPaCwAAMp4Tv74",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

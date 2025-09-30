@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "What should I do to ensure correct datetime conversions when exporting data to Google Cloud Storage using PyArrow?",
+          "timestamp": "2025-09-30T19:17:45.686553+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"datetime conversions PyArrow Google Cloud Storage\"}",
+          "tool_call_id": "call_D3hoJaKRisSzmIDUIZV8xV1O",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 231,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 20,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:17:46+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CLa94PEx6uYE8cKZJh7IwMmemaWsY",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "fdef2dfcc4",
+              "question": "lServiceException: 401 Anonymous caller does not have storage.objects.list access to the Google Cloud Storage bucket. Permission 'storage.objects.list' denied on resource (or it may not exist).",
+              "sort_order": 47,
+              "content": "This occurs because you are not logged in with Google Cloud SDK, or the project ID is not set. Follow these steps:\n\n1. Log in using Google Cloud SDK:\n   \n   ```bash\n   gcloud auth login\n   ```\n   \n   This will open a tab in the browser. Accept the terms, then close the tab if needed.\n\n2. Set the project ID:\n   \n   ```bash\n   gcloud config set project <YOUR_PROJECT_ID>\n   ```\n\n3. Upload the `pq` directory to a Google Cloud Storage (GCS) Bucket:\n   \n   ```bash\n   gsutil -m cp -r pq/ <YOUR_URI_from_gsutil>/pq\n   ```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-5/047_fdef2dfcc4_lserviceexception-401-anonymous-caller-does-not-ha.md"
+            },
+            {
+              "id": "a697cb2dee",
+              "question": "GCP: Do I need to delete my instance in Google Cloud?",
+              "sort_order": 101,
+              "content": "[In this lecture](https://www.youtube.com/watch?v=ae-CV2KfoN0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb), Alexey deleted his instance in Google Cloud. Do I have to do it?\n\nNo, do not delete your instance in Google Cloud Platform. Otherwise, you will have to set it up again for the week 1 readings.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/101_a697cb2dee_gcp-do-i-need-to-delete-my-instance-in-google-clou.md"
+            },
+            {
+              "id": "9179edaff3",
+              "question": "Google Cloud BigQuery: Location Problems",
+              "sort_order": 66,
+              "content": "When running a query on BigQuery, you might encounter the error: **\"This table is not on the specified location\"**.\n\nTo resolve this issue, consider the following steps:\n\n- **Check the Locations**: Ensure the locations of your bucket, datasets, and tables are consistent. They should all reside in the same location.\n\n- **Modify Query Settings**:\n  1. Go to the query window.\n  2. Select **More** -> **Query Settings**.\n  3. Select the correct location.\n\n- **Verify Table Paths**: Double-check the paths in your query:\n  1. Click on the table.\n  2. Go to **Details**.\n  3. Copy the correct path.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/066_9179edaff3_google-cloud-bigquery-location-problems.md"
+            },
+            {
+              "id": "a83247e572",
+              "question": "GCP BQ - Datetime columns in Parquet files created from Pandas show up as integer columns in BigQuery",
+              "sort_order": 16,
+              "content": "### Solution:\n\nIf you\u2019re using Mage, in the last Data Exporter that writes to Google Cloud Storage, use PyArrow to generate the Parquet file with the correct logical type for the datetime columns. Otherwise, they won't be converted to a timestamp when loaded by BigQuery later on.\n\n```python\nimport pyarrow as pa\nimport pyarrow.parquet as pq\nimport os\n\nif 'data_exporter' not in globals():\n    from mage_ai.data_preparation.decorators import data_exporter\n\n# Replace with the location of your service account key JSON file.\nos.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/src/personal-gcp.json'\n\nbucket_name = \"<YOUR_BUCKET_NAME>\"\nobject_key = 'nyc_taxi_data_2022.parquet'\nwhere = f'{bucket_name}/{object_key}'\n\n@data_exporter\ndef export_data(data, *args, **kwargs):\n    table = pa.Table.from_pandas(data, preserve_index=False)\n    gcs = pa.fs.GcsFileSystem()\n    pq.write_table(\n        table,\n        where,\n        # Convert integer columns in Epoch milliseconds\n        # to Timestamp columns in microseconds ('us') so\n        # they can be loaded into BigQuery with the right\n        # data type\n        coerce_timestamps='us',\n        filesystem=gcs\n    )\n```\n\n### Solution 2:\n\nIf you\u2019re using Mage, in the last Data Exporter that writes to Google Cloud Storage, provide PyArrow with an explicit schema to generate the Parquet file with the correct logical type for the datetime columns.\n\n```python\nschema = pa.schema([\n    ('vendor_id', pa.int64()),\n    ('lpep_pickup_datetime', pa.timestamp('ns')),\n    ('lpep_dropoff_datetime', pa.timestamp('ns')),\n    ('store_and_fwd_flag', pa.string()),\n    ('ratecode_id', pa.int64()),\n    ('pu_location_id', pa.int64()),\n    ('do_location_id', pa.int64()),\n    ('passenger_count', pa.int64()),\n    ('trip_distance', pa.float64()),\n    ('fare_amount', pa.float64()),\n    ('extra', pa.float64()),\n    ('mta_tax', pa.float64()),\n    ('tip_amount', pa.float64()),\n    ('tolls_amount', pa.float64()),\n    ('improvement_surcharge', pa.float64()),\n    ('total_amount', pa.float64()),\n    ('payment_type', pa.int64()),\n    ('trip_type', pa.int64()),\n    ('congestion_surcharge', pa.float64()),\n    ('lpep_pickup_month', pa.int64())\n])\n\ntable = pa.Table.from_pandas(data, schema=schema)\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-3/016_a83247e572_gcp-bq-datetime-columns-in-parquet-files-created-f.md"
+            },
+            {
+              "id": "8f9f91b4de",
+              "question": "GCP - Windows Google Cloud SDK install issue:",
+              "sort_order": 105,
+              "content": "If you are encountering installation trouble with the Google Cloud SDK on Windows and receiving the following error:\n\n```\nThese credentials will be used by any library that requests Application Default Credentials (ADC).\n\nWARNING:\n\nCannot find a quota project to add to ADC. You might receive a \"quota exceeded\" or \"API not enabled\" error. Run $ gcloud auth application-default set-quota-project to add a quota project.\n```\n\nTry these steps:\n\n1. Reinstall the SDK using the unzip file \"install.bat\".\n2. Check the installation by running `gcloud version`.\n3. Run `gcloud init` to set up your project.\n4. Execute `gcloud auth application-default login`.\n\nFor detailed instructions, refer to the following guide: [Windows SDK Installation Guide](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_1_basics_n_setup/1_terraform_gcp/windows.md)",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/105_8f9f91b4de_gcp-windows-google-cloud-sdk-install-issue.md"
+            }
+          ],
+          "tool_call_id": "call_D3hoJaKRisSzmIDUIZV8xV1O",
+          "metadata": null,
+          "timestamp": "2025-09-30T19:17:46.626658+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "To ensure correct datetime conversions when exporting data to Google Cloud Storage using PyArrow, you can follow these guidelines:\n\n1. **Use `coerce_timestamps` Parameter**: When writing your DataFrame to a Parquet file, ensure that you set the `coerce_timestamps` parameter to specify the time resolution needed. For example, if you need your timestamps in microseconds, you can set `coerce_timestamps='us'`.\n\n   Here's a basic example of using PyArrow to handle datetime conversions correctly:\n   ```python\n   import pyarrow as pa\n   import pyarrow.parquet as pq\n   import os\n\n   # Set path to your service account key\n   os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/path/to/your/service_account.json'\n\n   bucket_name = \"<YOUR_BUCKET_NAME>\"\n   object_key = 'data.parquet'\n   where = f'{bucket_name}/{object_key}'\n\n   # Assume 'data' is your Pandas DataFrame\n   table = pa.Table.from_pandas(data, preserve_index=False)\n   gcs = pa.fs.GcsFileSystem()\n\n   pq.write_table(\n       table,\n       where,\n       coerce_timestamps='us',  # Convert integer columns in Epoch milliseconds to Timestamp columns in microseconds\n       filesystem=gcs\n   )\n   ```\n\n2. **Define Explicit Schema**: Alternatively, if you're using specific datetime columns, define an explicit schema to enforce the logical types for those datetime columns. This way, you can ensure that the datetime columns are treated correctly during the export.\n\n   Here\u2019s how to define an explicit schema:\n   ```python\n   schema = pa.schema([\n       ('your_datetime_column', pa.timestamp('ns')),  # Define the logical type as timestamp\n       # Define other column types...\n   ])\n\n   table = pa.Table.from_pandas(data, schema=schema)\n   ```\n\nBy following these steps, you can avoid issues where datetime values may be incorrectly interpreted (e.g., as integers) when being processed later, such as in Google BigQuery. Make sure to always test your data loading process to verify that the datetime conversions are being handled as expected.\n\nFor more detailed technical guidance, you can refer to the specific section related to this in the course materials: [GCP BQ - Datetime columns in Parquet files](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-3/016_a83247e572_gcp-bq-datetime-columns-in-parquet-files-created-f.md).",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1890,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 525,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-09-30T19:17:47+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CLa95w2mEPiCw2pdwdsT0c8PdyAnN",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}
