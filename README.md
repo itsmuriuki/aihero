@@ -1,4 +1,4 @@
-#RepoMentor 🤖
+# RepoMentor 🤖
 
 *Your AI GitHub Assistant – Ask questions about GitHub repositories and get intelligent answers powered by advanced AI.*
 
@@ -269,7 +269,7 @@ The MIT License allows for:
 
 ### Author
 
-**Rajdeep Kushwaha**
+**Gerald Muriuki**
 
 * GitHub: [@itsmuriuki](https://github.com/itsmuriuki)
 * Repository: [aihero](https://github.com/itsmuriuki/aihero)
