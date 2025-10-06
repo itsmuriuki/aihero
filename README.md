@@ -1,139 +1,280 @@
-### AI FAQ Assistant
+#RepoMentor 🤖
 
-Short, descriptive title: AI FAQ Assistant for GitHub Repos
+*Your AI GitHub Assistant – Ask questions about GitHub repositories and get intelligent answers powered by advanced AI.*
 
-One-liner: An agent that answers questions about a GitHub repo (DataTalksClub/faq) using semantic search and an LLM.
+[![Python](https://img.shields.io/badge/Python-3.13+-blue.svg)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
+[![Gemini AI](https://img.shields.io/badge/Gemini-2.0--flash-orange.svg)](https://ai.google.dev/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Badges: ![Python](https://img.shields.io/badge/Python-3.12-blue) ![Streamlit](https://img.shields.io/badge/Streamlit-1.50.0-ff4b4b) ![License](https://img.shields.io/badge/License-MIT-green)
+---
 
-## Overview
+## 📋 Overview
 
-This project provides an interactive assistant that can answer questions about the `DataTalksClub/faq` repository. It indexes the repository content locally, performs fast semantic search over the indexed documents, and uses an LLM to craft concise, source-linked answers in the UI.
+Repomentor is an intelligent AI-powered assistant that helps developers understand and interact with GitHub repositories. Using advanced natural language processing and hybrid search capabilities, aihero can answer questions about repository content, provide code explanations, and assist with development workflows.
 
-- **Problem**: Manually searching through documentation is slow and error-prone.
-- **Solution**: Ask questions in natural language; the app searches the indexed materials and responds with cited sources.
-- **Why it's useful**: Quickly discover relevant FAQ entries, links, and references without navigating the entire repo.
+### Key Features
 
-Optional visuals: Add a screenshot or GIF of the Streamlit app here.
+* **🤖 AI-Powered Q&A**: Get intelligent answers about repository content using Google Gemini AI.
+* **🔍 Hybrid Search**: Combines text-based and semantic search for accurate results.
+* **💬 Interactive Chat**: User-friendly Streamlit web interface.
+* **📊 Repository Analysis**: Indexes and analyzes GitHub repository data.
+* **🔧 CLI & Web Interfaces**: Choose between command-line or graphical interface.
+* **📝 Comprehensive Logging**: Track interactions and performance metrics.
+* **🛡️ Error Handling**: Robust error handling with user-friendly messages.
 
-## Installation
+### Target Audience
 
-### Requirements
-- **Python**: 3.12
-- **Package manager**: Poetry
-- **Environment variable**: `OPENAI_API_KEY`
+* **Developers** looking to understand large codebases quickly.
+* **Open Source Contributors** exploring new projects.
+* **Students** learning from real-world code examples.
+* **Teams** needing quick answers about their repositories.
 
-### Steps
-1) Clone the repository and navigate to the app directory:
+---
 
-```bash
-git clone <your-fork-or-repo-url>
-cd /aihero/projects/app
-```
+## 🚀 Installation
 
-2) Install dependencies with Poetry:
+### Prerequisites
 
-```bash
-poetry install
-```
+* Python 3.13 or higher
+* OPENAI API key
 
-3) Set your OpenAI API key (required by `pydantic-ai` / OpenAI client):
+### Step-by-Step Setup
 
-```bash
-export OPENAI_API_KEY="sk-..."   # macOS/Linux
-```
+1. **Clone the repository**
 
-If you see a Watchdog performance message on macOS, you can optionally install:
+   ```bash
+   git clone https://github.com/itsmuriuki/aihero.git
+   cd aihero/projects
+   ```
 
-```bash
-xcode-select --install
-poetry run pip install watchdog
-```
+2. **Install dependencies**
 
-Dependencies are defined in `pyproject.toml`:
-- `streamlit` (UI)
-- `pydantic-ai` (agent orchestration)
-- `openai` (LLM client)
-- `minsearch` (lightweight search over the index)
-- `requests`, `python-frontmatter`
+   ```bash
+   # Using uv (recommended)
+   uv sync
 
-## Usage
+   # Or using pip
+   pip install -r requirements.txt
+   ```
 
-### Run the app
+3. **Set up environment variables**
+   Create a `.env` file in the project root:
 
-```bash
-poetry run streamlit run app.py
-```
+   ```bash
+   OPENAI_API_KEY=your_gemini_api_key_here
 
-Then open the local URL shown in the terminal (e.g., `http://localhost:8501`). The app will:
-- Index the `DataTalksClub/faq` repository content using `ingest.py`
-- Initialize an agent with a search tool
-- Let you ask questions and receive answers with source links
+   ```
 
-### Configuration
-- The repository owner/name are currently set in `app.py` within `init_agent()`:
-  - `repo_owner = "DataTalksClub"`
-  - `repo_name = "faq"`
-- To target a different repo, adjust these values and modify the filter function if needed.
+4. **Run the application**
 
-## Features
-- **Streamlit chat UI** with chat history
-- **On-demand indexing** of the target GitHub repository
-- **Semantic search** over indexed content (via `minsearch`)
-- **LLM agent** (via `pydantic-ai` + OpenAI) with file citation guidance
-- **Local logging** of interactions in `logs/`
+   **Web Interface (Recommended):**
 
-Roadmap (optional):
-- Add persistent vector store
-- Add multi-repo support and repo picker
-- Add retrieval metrics and evaluation
+   ```bash
+   streamlit run app.py
+   ```
 
-## Contributing
-Contributions are welcome!
+   Open [http://localhost:8501](http://localhost:8501) in your browser.
 
-Guidelines:
-- Create a feature branch from `main`
-- Keep edits focused and include concise descriptions
-- Ensure code is formatted and free of linter errors
-- Open a PR describing the change and rationale
+   **Command Line Interface:**
 
-If you adopt a style guide or additional checks, add them here and/or link to `CONTRIBUTING.md`.
+   ```bash
+   python main.py
+   ```
 
-## Tests
-If you add tests under `tests/`, you can run them with your preferred runner. For example, using `pytest` (if added to dependencies):
+---
 
-```bash
-poetry run pytest -q
-```
+## 🎮 Usage
 
-Currently there are no test suites provided; feel free to contribute.
+### Web Interface
 
-## Deployment (optional)
+The Streamlit app provides an intuitive chat interface where you can:
 
-### Streamlit Community Cloud
-1) Push your repo to GitHub
-2) Create an app on Streamlit Cloud and point it to `app.py`
-3) Set `OPENAI_API_KEY` as a secret in the Streamlit app settings
+* Ask questions about GitHub repositories.
+* Get AI-powered explanations and code insights.
+* View conversation history.
+* Access comprehensive error handling.
 
-### Containerization (future)
-If you add a `Dockerfile`, you could run:
+**Example Questions:**
+
+* "How do I set up a Kafka producer in Python?"
+* "What are the best practices for error handling?"
+* "Explain the repository structure and main components."
+
+### Command Line Interface
+
+For programmatic or headless usage:
 
 ```bash
-docker build -t ai-faq-assistant .
-docker run -p 8501:8501 -e OPENAI_API_KEY=... ai-faq-assistant
+python main.py
 ```
 
-## FAQ / Troubleshooting
-- "ImportError: cannot import name 'SearchTool'" — The project now defines a local `SearchTool` inside `search_agent.py`. Ensure you're running the latest code and restart the app.
-- "Watchdog warning on macOS" — Install Xcode CLT and `watchdog` as shown above for better file change detection.
-- "OpenAI authentication error" — Confirm `OPENAI_API_KEY` is set in your environment.
+Type your questions interactively. Type `stop` to exit.
 
-## Credits / Acknowledgments
-- Inspired by RAG-style assistants and documentation chatbots
-- Uses `Streamlit`, `pydantic-ai`, `openai`, and `minsearch`
-- Thanks to the `DataTalksClub` community for the `faq` repository
+### Programmatic Usage
 
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+```python
+import asyncio
+from ingest import index_data
+from search_agent import init_agent
 
+# Initialize the system
+index = index_data("DataTalksClub", "faq")  # Replace with your repo
+agent = init_agent(index, "DataTalksClub", "faq")
 
+async def ask_question(question):
+    response = await agent.run(user_prompt=question)
+    return response.output
+
+answer = asyncio.run(ask_question("How do I run Kafka with Python?"))
+print(answer)
+```
+
+---
+
+## 📁 Project Structure
+
+```
+aihero/projects
+├── app.py               # Streamlit web application
+├── main.py              # Command-line interface
+├── ingest.py            # Data ingestion and indexing
+├── search_agent.py      # Pydantic AI agent configuration
+├── search_tools.py      # Search functionality and tools
+├── logs.py              # Logging utilities
+├── pyproject.toml       # Project configuration and dependencies
+├── requirements.txt     # Alternative dependency management
+├── .env                 # Environment variables (create this)
+├── src/                 # Core modules
+│   ├── __init__.py
+│   ├── agent_logic.py
+│   ├── data_processing.py
+│   ├── evaluation.py
+│   ├── logging_utils.py
+│   └── search_engine.py
+├── tests/               # Test suite
+│   ├── __init__.py
+│   ├── run_tests.py
+│   ├── test_*.py
+├── logs/                # Generated log files
+└── __pycache__/         # Python cache (generated)
+```
+
+---
+
+## 🛠️ Technologies Used
+
+### Core Dependencies
+
+* **[Pydantic AI](https://ai.pydantic.dev/)** – AI agent framework with tool calling.
+* **[Google Gemini AI](https://ai.google.dev/)** – Large language model for responses.
+* **[Streamlit](https://streamlit.io/)** – Web application framework.
+* **[minsearch](https://github.com/alexeygrigorev/minsearch)** – Lightweight text search engine.
+
+### Development Tools
+
+* **Python 3.13+** – Core programming language.
+* **uv** – Fast Python package manager.
+* **pytest** – Testing framework.
+* **Jupyter** – Interactive development notebooks.
+
+### Infrastructure
+
+* **GitHub API** – Repository data access.
+* **Environment Variables** – Configuration management.
+* **JSON Logging** – Structured interaction logging.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions!
+
+### Development Setup
+
+1. Fork the repository.
+2. Create a feature branch:
+
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+3. Install development dependencies:
+
+   ```bash
+   uv sync --group dev
+   ```
+4. Run tests:
+
+   ```bash
+   python tests/run_tests.py
+   ```
+
+### Guidelines
+
+* **Code Style**: Follow PEP 8 standards.
+* **Testing**: Add tests for new features.
+* **Documentation**: Update README for significant changes.
+* **Commits**: Use clear, descriptive commit messages.
+
+### Pull Request Process
+
+1. Ensure all tests pass.
+2. Update documentation if needed.
+3. Create a pull request with a clear description.
+4. Wait for review and address feedback.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
+
+The MIT License allows for:
+
+* ✅ Commercial use
+* ✅ Modification
+* ✅ Distribution
+* ✅ Private use
+* ⚠️ No liability or warranty
+
+---
+
+## 🙏 Acknowledgments
+
+### Core Technologies
+
+* **Google Gemini AI** – Powerful language model.
+* **Pydantic AI** – Agent framework.
+* **Streamlit** – Web interface framework.
+* **minsearch** – Efficient text search functionality.
+
+### Inspiration & Resources
+
+* **DataTalksClub** – FAQ repository used in demos.
+* **Open Source Community** – Amazing tools and libraries.
+* **AI Research Community** – Advancing AI assistants.
+
+### Special Thanks
+
+* Built with ❤️ for developers who want to understand codebases faster.
+* Special acknowledgment to the AI agent development community.
+
+---
+
+## 📞 Contact & Support
+
+* **GitHub Issues**: [Report bugs or request features](https://github.com/itsmuriuki/aihero/issues)
+* **GitHub Discussions**: [Ask questions and join discussions](https://github.com/itsmuriuki/aiheri/discussions)
+* **Documentation**: Check this README and inline code documentation.
+
+### Author
+
+**Rajdeep Kushwaha**
+
+* GitHub: [@itsmuriuki](https://github.com/itsmuriuki)
+* Repository: [aihero](https://github.com/itsmuriuki/aihero)
+
+---
+
+**Built with ❤️ for developers, by developers**
+*Transform how you understand and interact with GitHub repositories* 🚀
