@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "How can I compute the difference in hours between two timestamps in Pyspark?",
+          "timestamp": "2025-10-06T13:33:49.933040+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"compute difference in hours between two timestamps Pyspark\"}",
+          "tool_call_id": "call_Xr0ssd6QE6qqYxPla5R9Zvgl",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 227,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 23,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T13:33:50+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CNfdWYgLo32ZHY215rypYXdaCx8Hz",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "1da0437718",
+              "question": "Homework: how to convert the time difference of two timestamps to hours",
+              "sort_order": 53,
+              "content": "Pyspark converts the difference of two `TimestampType` values to Python's native `datetime.timedelta` object. The `timedelta` object stores the duration in terms of days, seconds, and microseconds. Each of these units must be manually converted into hours to express the total duration between the two timestamps using only hours.\n\nAnother method to achieve this is using the `datediff` SQL function. It requires the following parameters:\n\n- **Upper Date**: The closer date, e.g., `dropoff_datetime`.\n- **Lower Date**: The farther date, e.g., `pickup_datetime`.\n\nThe result is returned in days, so you can multiply the result by 24 to get the duration in hours.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-5/053_1da0437718_homework-how-to-convert-the-time-difference-of-two.md"
+            },
+            {
+              "id": "84f10086ab",
+              "question": "Import pyspark - Error: No Module named \u2018pyspark\u2019",
+              "sort_order": 7,
+              "content": "Ensure that your `PYTHONPATH` is set correctly to include the PySpark library. You can check if PySpark is pointing to the correct location by running:\n\n```python\nimport pyspark\n\nprint(pyspark.__file__)\n```\n\nIt should point to the location where PySpark is installed (e.g., `/home/<your username>/spark/spark-3.x.x-bin-hadoop3.x/python/pyspark/__init__.py`).",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-5/007_84f10086ab_import-pyspark-error-no-module-named-pyspark.md"
+            },
+            {
+              "id": "a1f6167da1",
+              "question": "GCP: \"Failed to load\" when accessing Compute Engine\u2019s metadata section (e.g., to add a SSH key)",
+              "sort_order": 100,
+              "content": "You likely didn\u2019t enable the [Compute Engine API](https://console.cloud.google.com/marketplace/details/google/compute.googleapis.com).",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/100_a1f6167da1_gcp-failed-to-load-when-accessing-compute-engines.md"
+            },
+            {
+              "id": "a411de5004",
+              "question": "Office Hours: I can\u2019t attend the \u201cOffice hours\u201d / workshop, will it be recorded?",
+              "sort_order": 12,
+              "content": "Yes! Every \"Office Hours\" will be recorded and available a few minutes after the live session is over; so you can view (or rewatch) whenever you want.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/012_a411de5004_office-hours-i-cant-attend-the-office-hours-worksh.md"
+            },
+            {
+              "id": "78fda262c6",
+              "question": "How does dbt handle dependencies between models?",
+              "sort_order": 79,
+              "content": "Dbt provides a mechanism called `ref` to manage dependencies between models. By referencing other models using the `ref` keyword in SQL, dbt automatically understands the dependencies and ensures the correct execution order.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/079_78fda262c6_how-does-dbt-handle-dependencies-between-models.md"
+            }
+          ],
+          "tool_call_id": "call_Xr0ssd6QE6qqYxPla5R9Zvgl",
+          "metadata": null,
+          "timestamp": "2025-10-06T13:33:50.909083+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "To compute the difference in hours between two timestamps in PySpark, you can use either of the following methods:\n\n1. **Using `datetime.timedelta`:** \n   PySpark will convert the difference of two `TimestampType` values to a Python `datetime.timedelta` object. This object stores the duration in days, seconds, and microseconds. You will need to convert these units manually into hours to express the total duration between the two timestamps. \n\n   Here's a general idea of how you can do it:\n   ```python\n   from pyspark.sql import SparkSession\n   from pyspark.sql.functions import col\n\n   spark = SparkSession.builder.appName(\"TimestampDiff\").getOrCreate()\n   \n   # Sample DataFrame\n   data = [(\"2023-01-01 12:00:00\", \"2023-01-01 14:30:00\")]\n   df = spark.createDataFrame(data, [\"start_time\", \"end_time\"])\n   \n   # Convert to TimestampType\n   df = df.withColumn(\"start_time\", col(\"start_time\").cast(\"timestamp\"))\n   df = df.withColumn(\"end_time\", col(\"end_time\").cast(\"timestamp\"))\n   \n   # Calculate difference and convert to hours\n   df = df.withColumn(\"hours_difference\", (col(\"end_time\").cast(\"long\") - col(\"start_time\").cast(\"long\")) / 3600)\n   df.show()\n   ```\n\n2. **Using `datediff` function:**\n   You can use the `datediff` SQL function to find the difference between two timestamps, which gives the result in days. To convert days to hours, simply multiply the result by 24:\n\n   ```python\n   from pyspark.sql import SparkSession\n   from pyspark.sql.functions import datediff, col\n\n   spark = SparkSession.builder.appName(\"TimestampDiff\").getOrCreate()\n   \n   # Sample DataFrame\n   data = [(\"2023-01-01 12:00:00\", \"2023-01-02 12:00:00\")]\n   df = spark.createDataFrame(data, [\"start_time\", \"end_time\"])\n   \n   # Calculate days difference and convert to hours\n   df = df.withColumn(\"days_difference\", datediff(col(\"end_time\"), col(\"start_time\")))\n   df = df.withColumn(\"hours_difference\", col(\"days_difference\") * 24)\n   df.show()\n   ```\n\nThese methods allow you to compute the difference in hours between two timestamps in PySpark. For detailed steps and examples, refer to the source material: [Homework: how to convert the time difference of two timestamps to hours](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-5/053_1da0437718_homework-how-to-convert-the-time-difference-of-two.md).",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 981,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 594,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T13:33:53+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CNfdZDLWUndA2Jot4IsKTZcXcMSeZ",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

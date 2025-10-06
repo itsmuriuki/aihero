@@ -1,0 +1,148 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "Does the data engineering course provide any automated solutions for common errors?",
+          "timestamp": "2025-10-01T11:00:15.029668+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"automated solutions for common errors\"}",
+          "tool_call_id": "call_DUhywc7QJHoZLspXAAOe9zG7",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 224,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 19,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-01T11:00:15+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CLor9PoWkOLrjxiQM1J5s8XBqDjCz",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "faddbcb675",
+              "question": "Join Error on LocationID: \"Unable to find common supertype for templated argument\"",
+              "sort_order": 77,
+              "content": "No matching signature for operator `=` for argument types: `STRING`, `INT64`\n\n**Signature**: `T1 = T1`\n\n**Error:** Unable to find common supertype for templated argument.\n\n**Solution:**\n\nMake sure the `LocationID` field is of the same type in both tables. If it is in string format in one table, use the following dbt code to convert it to an integer:\n\n```sql\n{{ dbt.safe_cast(\"PULocationID\", api.Column.translate_type(\"integer\")) }} as pickup_locationid\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/077_faddbcb675_join-error-on-locationid-unable-to-find-common-sup.md"
+            },
+            {
+              "id": "1f4fd984f5",
+              "question": "Data type errors when ingesting with parquet files",
+              "sort_order": 49,
+              "content": "The easiest way to avoid these errors is by ingesting the relevant data in a `.csv.gz` file type. Then, do:\n\n```sql\nCREATE OR REPLACE EXTERNAL TABLE `dtc-de.trips_data_all.fhv_tripdata`\nOPTIONS (\n  format = 'CSV',\n  uris = ['gs://dtc_data_lake_dtc-de-updated/data/fhv_all/fhv_tripdata_2019-*.csv.gz']\n);\n```\n\nThis example should help you avoid data type issues for week 4.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/049_1f4fd984f5_data-type-errors-when-ingesting-with-parquet-files.md"
+            },
+            {
+              "id": "89733da275",
+              "images": [
+                {
+                  "description": "image #1",
+                  "id": "image_1",
+                  "path": "images/data-engineering-zoomcamp/image_c3c0865e.png"
+                }
+              ],
+              "question": "dbt: macro errors with get_payment_type_description(payment_type)",
+              "sort_order": 39,
+              "content": "You will face this issue if you copied and pasted the exact macro directly from the data-engineering-zoomcamp repo.\n\n### Error Message\n\n```\nBigQuery adapter: Retry attempt 1 of 1 after error: BadRequest('No matching signature for operator CASE for argument types: STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, NULL at [35:5]; reason: invalidQuery, location: query, message: No matching signature for operator CASE for argument types: STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, NULL at [35:5]')\n```\n\n### Solution\n\nTo resolve this issue, change the data type of the numbers (1, 2, 3, etc.) to text by enclosing them in quotes. The `payment_type` data type should be a string.\n\n#### Updated Macro\n\n```jinja\n{#\nThis macro returns the description of the payment_type\n#}\n\n{% macro get_payment_type_description(payment_type) -%}\n\ncase {{ payment_type }}\n\nwhen '1' then 'Credit card'\n\nwhen '2' then 'Cash'\n\nwhen '3' then 'No charge'\n\nwhen '4' then 'Dispute'\n\nwhen '5' then 'Unknown'\n\nwhen '6' then 'Voided trip'\n\nend\n\n{%- endmacro %}\n```\n\n<{IMAGE:image_1}>",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/039_89733da275_dbt-macro-errors-with-get_payment_type_description.md"
+            },
+            {
+              "id": "ea9c96ab72",
+              "question": "kafka.errors.NoBrokersAvailable: NoBrokersAvailable",
+              "sort_order": 12,
+              "content": "If you encounter this error, it is likely that your Kafka broker Docker container is not running.\n\n- Use the following command to check the running containers:\n\n  ```bash\n  docker ps\n  ```\n\n- Navigate to the folder containing your Docker Compose YAML file and execute the following command to start all instances:\n\n  ```bash\n  docker-compose up -d\n  ```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-6/012_ea9c96ab72_kafkaerrorsnobrokersavailable-nobrokersavailable.md"
+            },
+            {
+              "id": "73876c8348",
+              "images": null,
+              "question": "Docker-Compose: Errors pertaining to docker-compose.yml and pgadmin setup",
+              "sort_order": 48,
+              "content": "For those experiencing problems with Docker Compose, getting data in PostgreSQL, and similar issues, follow these steps:\n\n- **Create a new volume** on Docker, either using the command line or Docker Desktop app.\n- **Modify your `docker-compose.yml` file** as needed to fix any setup issues.\n- **Set `low_memory=False`** when importing the CSV file using pandas:\n  \n```python\ndf = pd.read_csv('yellow_tripdata_2021-01.csv', nrows=1000, low_memory=False)\n```\n\n- Use the specified function in your `upload-data.ipynb` for better tracking of the ingestion process.\n\n```python\nfrom time import time\n\ncounter = 0\ntime_counter = 0\n\nwhile True:\n    t_start = time()\n\n    df = next(df_iter)\n\n    df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)\n    df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)\n\n    df.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')\n\n    t_end = time()\n\n    t_elapsed = t_end - t_start\n\n    print('Chunk Insertion Done! Time taken: %.2f seconds' %(t_elapsed))\n\n    counter += 1\n    time_counter += t_elapsed\n\n    if counter == 14:\n        print('All Chunks Inserted! Total Time Taken: %.2f seconds' %(time_counter))\n        break\n```\n\n### Order of Execution:\n\n1. Open the terminal in the `2_docker_sql` folder and run: `docker compose up`\n2. Ensure no other containers are running except the ones you just executed (pgAdmin and pgdatabase).\n3. Open Jupyter Notebook and begin the data ingestion.\n4. Open pgAdmin and set up a server. Make sure you use the same configurations as your `docker-compose.yml` file, such as the same name (`pgdatabase`), port, and database name (`ny_taxi`).",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/048_73876c8348_docker-compose-errors-pertaining-to-docker-compose.md"
+            }
+          ],
+          "tool_call_id": "call_DUhywc7QJHoZLspXAAOe9zG7",
+          "metadata": null,
+          "timestamp": "2025-10-01T11:00:16.035297+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "The data engineering course does provide guidance on resolving common errors you might encounter while working with different data processing tools. Here are a few examples of automated solutions or suggested steps to mitigate errors:\n\n1. **Join Error on `LocationID`:**\n   If you encounter a type mismatch error like \"Unable to find common supertype for templated argument\", the course recommends ensuring that the `LocationID` fields in both tables are of the same type. For example, if one is a string and the other is an integer, use the following dbt code to convert the string to an integer:\n   ```sql\n   {{ dbt.safe_cast(\"PULocationID\", api.Column.translate_type(\"integer\")) }} as pickup_locationid\n   ```\n   [Read more about this error](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-4/077_faddbcb675_join-error-on-locationid-unable-to-find-common-sup.md).\n\n2. **Data Type Errors:**\n   To avoid data type issues when ingesting data, it is suggested to use a `.csv.gz` file format for ingestion. Here is an example SQL command you might use:\n   ```sql\n   CREATE OR REPLACE EXTERNAL TABLE `dtc-de.trips_data_all.fhv_tripdata`\n   OPTIONS (\n     format = 'CSV',\n     uris = ['gs://dtc_data_lake_dtc-de-updated/data/fhv_all/fhv_tripdata_2019-*.csv.gz']\n   );\n   ```\n   [Find more information about this topic](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-4/049_1f4fd984f5_data-type-errors-when-ingesting-with-parquet-files.md).\n\n3. **Kafka Errors:**\n   If encountering the error `kafka.errors.NoBrokersAvailable`, it is recommended to check if your Kafka broker is running by using:\n   ```bash\n   docker ps\n   ```\n   If it's not running, start your Docker containers with:\n   ```bash\n   docker-compose up -d\n   ```\n   [Learn more about resolving this error](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-6/012_ea9c96ab72_kafkaerrorsnobrokersavailable-nobrokersavailable.md).\n\nThese examples show that while the course does not offer fully automated solutions, it provides clear steps and code snippets to resolve common issues effectively. If you need more specific information or have other questions, feel free to ask!",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1773,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 551,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-01T11:00:16+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CLorAGGkJCwfzgGDArYh2cYkPMLho",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

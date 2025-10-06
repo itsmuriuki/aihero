@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "How do I make sure pgAdmin configurations persist across container restarts when using Docker?",
+          "timestamp": "2025-10-01T11:00:59.248019+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"pgAdmin configurations persist across container restarts\"}",
+          "tool_call_id": "call_qruvpbEQbQitCB9APcXK5Xcy",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 228,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 21,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-01T11:01:00+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CLorsC1adA2nRwbM8L1MN70xARAGD",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "ca3b8ac8db",
+              "question": "pgAdmin: How to Persist pgAdmin Configurations",
+              "sort_order": 81,
+              "content": "To keep pgAdmin settings after restarting the container, follow these steps:\n\n1. Create the directory for pgAdmin data:\n   \n   ```bash\n   mkdir -p /path/to/pgadmin-data\n   ```\n\n2. Assign ownership to pgAdmin's user (ID 5050):\n   \n   ```bash\n   sudo chown -R 5050:5050 /path/to/pgadmin-data\n   ```\n\n3. Set the appropriate permissions:\n   \n   ```bash\n   sudo chmod -R 755 /path/to/pgadmin-data\n   ```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/081_ca3b8ac8db_pgadmin-how-to-persist-pgadmin-configurations.md"
+            },
+            {
+              "id": "ac52bea382",
+              "question": "Docker-Compose: Persist PGAdmin docker contents on GCP",
+              "sort_order": 42,
+              "content": "One common issue when running Docker Compose on GCP is that PostgreSQL might not persist its data to the specified path. For example:\n\n```yaml\nservices:\n  ...\n  pgadmin:\n    ...\n    volumes:\n      - \"./pgadmin:/var/lib/pgadmin:wr\"\n```\n\nThis setup might not work. To resolve this, use Docker Volume to make the data persist:\n\n```yaml\nservices:\n  ...\n  pgadmin:\n    ...\n    volumes:\n      - pgadmin:/var/lib/pgadmin\n\nvolumes:\n  pgadmin:\n```\n\nThis configuration change ensures the persistence of the PGAdmin data on GCP.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/042_ac52bea382_docker-compose-persist-pgadmin-docker-contents-on.md"
+            },
+            {
+              "id": "4146155608",
+              "question": "Docker-Compose: Persist PGAdmin configuration",
+              "sort_order": 44,
+              "content": "To persist pgAdmin configuration, such as the server name, modify your `docker-compose.yml` by adding a \"volumes\" section:\n\n```yaml\nservices:\n\n  pgdatabase:\n    [...]\n\n  pgadmin:\n    image: dpage/pgadmin4\n    environment:\n      - PGADMIN_DEFAULT_EMAIL=admin@admin.com\n      - PGADMIN_DEFAULT_PASSWORD=root\n    volumes:\n      - \"./pgAdmin_data:/var/lib/pgadmin/sessions:rw\"\n    ports:\n      - \"8080:80\"\n```\n\nIn the example above, \"pgAdmin_data\" is a folder on the host machine, and \"/var/lib/pgadmin/sessions\" is the session settings folder in the pgAdmin container.\n\nBefore running `docker-compose up` on the YAML file, provide the pgAdmin container with access permissions to the \"pgAdmin_data\" folder. The container runs with a username \"5050\" and user group \"5050\". Use the following command to set permissions:\n\n```bash\nsudo chown -R 5050:5050 pgAdmin_data\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/044_docker-compose-persist-pgadm.md"
+            },
+            {
+              "id": "2efd03d7f8",
+              "question": "pgAdmin - Can not access/open the PgAdmin address via browser",
+              "sort_order": 80,
+              "content": "I am using a Mac Pro device and connect to the GCP Compute Engine via Remote SSH - VSCode. But when trying to run the PgAdmin container via `docker run` or `docker compose`, I couldn't access the PgAdmin address via my browser. After modifications, I was able to access it.\n\n### Solution #1:\n\nModify the `docker run` command:\n\n```bash\ndocker run --rm -it \\\n  -e PGADMIN_DEFAULT_EMAIL=\"admin@admin.com\" \\\n  -e PGADMIN_DEFAULT_PASSWORD=\"pgadmin\" \\\n  -e PGADMIN_CONFIG_WTF_CSRF_ENABLED=\"False\" \\\n  -e PGADMIN_LISTEN_ADDRESS=0.0.0.0 \\\n  -e PGADMIN_LISTEN_PORT=5050 \\\n  -p 5050:5050 \\\n  --network=de-zoomcamp-network \\\n  --name pgadmin-container \\\n  --link postgres-container \\\n  -t dpage/pgadmin4\n```\n\n### Solution #2:\n\nModify the `docker-compose.yaml` configuration and use the `docker compose up` command:\n\n```yaml\npgadmin:\n  image: dpage/pgadmin4\n  container_name: pgadmin-container\n  environment:\n    - PGADMIN_DEFAULT_EMAIL=admin@admin.com\n    - PGADMIN_DEFAULT_PASSWORD=pgadmin\n    - PGADMIN_CONFIG_WTF_CSRF_ENABLED=False\n    - PGADMIN_LISTEN_ADDRESS=0.0.0.0\n    - PGADMIN_LISTEN_PORT=5050\n  volumes:\n    - \"./pgadmin_data:/var/lib/pgadmin/data\"\n  ports:\n    - \"5050:5050\"\n  networks:\n    - de-zoomcamp-network\n  depends_on:\n    - postgres-container\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/080_2efd03d7f8_pgadmin-can-not-accessopen-the-pgadmin-address-via.md"
+            },
+            {
+              "id": "3d24f7796d",
+              "question": "GitHub Codespaces: Running pgadmin in Docker",
+              "sort_order": 9,
+              "content": "With the default instructions, running pgadmin in Docker may result in a blank screen after logging into the pgadmin console. To resolve this, add the following two environment variables to your pgadmin configuration to allow it to work with Codespaces\u2019 reverse proxy:\n\n```plaintext\nPGADMIN_CONFIG_PROXY_X_HOST_COUNT: 1\nPGADMIN_CONFIG_PROXY_X_PREFIX_COUNT: 1\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/009_3d24f7796d_github-codespaces-running-pgadmin-in-docker.md"
+            }
+          ],
+          "tool_call_id": "call_qruvpbEQbQitCB9APcXK5Xcy",
+          "metadata": null,
+          "timestamp": "2025-10-01T11:01:00.457512+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "To ensure that pgAdmin configurations persist across container restarts when using Docker, you can follow these steps:\n\n1. **Create a directory for pgAdmin data**:\n   ```bash\n   mkdir -p /path/to/pgadmin-data\n   ```\n\n2. **Assign ownership of the directory to pgAdmin's user (user ID 5050)**:\n   ```bash\n   sudo chown -R 5050:5050 /path/to/pgadmin-data\n   ```\n\n3. **Set appropriate permissions**:\n   ```bash\n   sudo chmod -R 755 /path/to/pgadmin-data\n   ```\n\n4. **Modify your `docker-compose.yml` file** to include a volume mapping:\n   ```yaml\n   services:\n     pgadmin:\n       image: dpage/pgadmin4\n       environment:\n         - PGADMIN_DEFAULT_EMAIL=admin@admin.com\n         - PGADMIN_DEFAULT_PASSWORD=root\n       volumes:\n         - \"/path/to/pgadmin-data:/var/lib/pgadmin\"\n       ports:\n         - \"8080:80\"\n   ```\n\nThis configuration sets up a volume that links the directory on the host machine to the directory used by pgAdmin inside the container, allowing persistent storage of configurations. \n\nFor more detailed guidelines, you can refer to the source materials:\n- [Persist pgAdmin Configurations](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-1/081_ca3b8ac8db_pgadmin-how-to-persist-pgadmin-configurations.md)\n- [Persist PGAdmin Docker Contents](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-1/042_ac52bea382_docker-compose-persist-pgadmin-docker-contents-on.md)\n- [Persist PGAdmin Configuration](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-1/044_docker-compose-persist-pgadm.md)",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1606,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 427,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-01T11:01:01+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CLortbFcegOzHcDmt59ogMgNGX2F0",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

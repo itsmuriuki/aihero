@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "Can you explain how to properly run a dbt command with the variable `is_test_run` set to false?",
+          "timestamp": "2025-10-06T13:33:08.097304+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"dbt command is_test_run\"}",
+          "tool_call_id": "call_4Ic7Lj98zzvoe3n6oqclOodT",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 234,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 19,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T13:33:08+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CNfcqekPCMHrfXSCUCO3gwkbOsh5G",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "778635395f",
+              "question": "DBT: Running `dbt run --models stg_green_tripdata --var 'is_test_run: false'` is not returning anything:",
+              "sort_order": 63,
+              "content": "Use the syntax below instead if the code in the tutorial is not working.\n\n```bash\ndbt run --select stg_green_tripdata --vars '{\"is_test_run\": false}'\n```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/063_778635395f_dbt-running-dbt-run-models-stg_green_tripdata-var.md"
+            },
+            {
+              "id": "55fac499b0",
+              "question": "Build: Why do my Fact_trips only contain a few days of data?",
+              "sort_order": 24,
+              "content": "Make sure you use:\n\n```bash\ndbt run --var 'is_test_run: false'\n```\nor\n\n```bash\ndbt build --var 'is_test_run: false'\n```\n\nWatch out for formatted text from this document: re-type the single quotes. If that does not work, use:\n\n```bash\n--vars '{\"is_test_run\": \"false\"}'\n```\n\nwith each phrase separately quoted.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/024_55fac499b0_build-why-do-my-fact_trips-only-contain-a-few-days.md"
+            },
+            {
+              "id": "a8e992c143",
+              "question": "dbt: Are there UI options for dbt Core like dbt Cloud?",
+              "sort_order": 84,
+              "content": "While dbt Core does not have an official UI like dbt Cloud, there are several tools available that provide UI functionality:\n\n- **Altimate's VS Code Extension**: \n  - Use the [VS Code dbt Power User extension](https://github.com/AltimateAI/vscode-dbt-power-user).\n  - Sign up for the community plan for free usage at [Altimate](https://app.myaltimate.com/register) and add the API into your VS Code extension.\n\n- **VSCode Snippets for dbt and Jinja**: \n  - Access the snippets package for SQL, YAML, and Markdown [here](https://github.com/bastienboutonnet/vscode-dbt).\n\n- **Monitoring with Elementary**:\n  - Monitor dbt projects using [Elementary](https://github.com/elementary-data/elementary).\n  - Learn more about its setup and features in this [Medium article](https://medium.com/@srinivas.dataengineer/supercharge-your-dbt-monitoring-with-elementary-data-0fac140a6f60).",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/084_a8e992c143_dbt-are-there-ui-options-for-dbt-core-like-dbt-clo.md"
+            },
+            {
+              "id": "a07b793f65",
+              "question": "GCP BQ: \"bq: command not found\"",
+              "sort_order": 8,
+              "content": "Run the following command to check if \"BigQuery Command Line Tool\" is installed or not:\n\n```bash\ngcloud components list\n```\n\nYou can also use `bq.cmd` instead of `bq` to make it work.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-3/008_a07b793f65_gcp-bq-bq-command-not-found.md"
+            },
+            {
+              "id": "fee87c684a",
+              "question": "DBT Deploy: Error When trying to run the dbt project on Prod",
+              "sort_order": 69,
+              "content": "When running the dbt project on production, ensure the following steps:\n\n1. **Pull Request and Merge**\n   - Make the pull request and merge the branch into the main.\n\n2. **Version Check**\n   - Ensure you have the latest version if changes were made to the repository elsewhere.\n\n3. **Project File Accessibility**\n   - Verify that the `dbt_project.yml` file is accessible to the project. If not, refer to the solution for the error: \"Dbt: This dbt Cloud run was cancelled because a valid dbt project was not found.\"\n\n4. **Dataset Consistency**\n   - Confirm that the name assigned to the dataset on BigQuery matches the name specified in the production environment configuration on dbt Cloud.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/069_fee87c684a_dbt-deploy-error-when-trying-to-run-the-dbt-projec.md"
+            }
+          ],
+          "tool_call_id": "call_4Ic7Lj98zzvoe3n6oqclOodT",
+          "metadata": null,
+          "timestamp": "2025-10-06T13:33:09.437010+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "To run a dbt command with the variable `is_test_run` set to false, you can use either of the following syntaxes:\n\n1. For the `dbt run` command:\n   ```bash\n   dbt run --vars '{\\\"is_test_run\\\": false}'\n   ```\n\n2. Alternatively, you can use:\n   ```bash\n   dbt run --var 'is_test_run: false'\n   ```\n\nIf you are using `dbt build`, the same syntax applies:\n```bash\ndbt build --vars '{\\\"is_test_run\\\": false}'\n```\nor\n```bash\ndbt build --var 'is_test_run: false'\n```\n\nMake sure to re-type the single quotes correctly if copying the command does not work [source](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-4/024_55fac499b0_build-why-do-my-fact_trips-only-contain-a-few-days.md).",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1236,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 211,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T13:33:10+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CNfcsRNOqUBb9iCJMrK6lGYlQTrhr",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

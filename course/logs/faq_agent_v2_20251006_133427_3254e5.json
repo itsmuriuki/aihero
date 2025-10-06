@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "How can I add a startup script to my VM for allowing SSH access?",
+          "timestamp": "2025-10-06T13:34:16.254145+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"add startup script VM SSH access\"}",
+          "tool_call_id": "call_9xgoHzoikpohibaxzfWXg3sz",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 226,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 19,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T13:34:17+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CNfdx8fzMTpJnDl29QxHV83PqylYx",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "68f8a4b307",
+              "question": "GCP VM: connect to host port 22 no route to host",
+              "sort_order": 111,
+              "content": "Go to edit your VM.\n\n1. Navigate to the **Automation** section.\n2. Add the following Startup script:\n   \n   ```bash\n   #!/bin/bash\n   sudo ufw allow ssh\n   ```\n3. Stop and Start the VM.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/111_68f8a4b307_gcp-vm-connect-to-host-port-22-no-route-to-host.md"
+            },
+            {
+              "id": "a63d2734b2",
+              "question": "GCP VM: VM connection request timeout",
+              "sort_order": 110,
+              "content": "**Question:** I connected to my VM perfectly fine last week (SSH) but when I tried again this week, the connection request keeps timing out.\n\n**Answer:**\n\n1. **Start Your VM:** Make sure the VM is running in your GCP console.\n\n2. **Update External IP:**\n   \n   - Copy its External IP once the VM is running.\n   - Update your SSH configuration file with this IP.\n\n3. **Edit SSH Config:**\n   \n   ```bash\n   cd ~/.ssh\n   code config\n   ```\n   \n   This command opens the config file in VSCode for editing.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/110_a63d2734b2_gcp-vm-vm-connection-request-timeout.md"
+            },
+            {
+              "id": "a3776dc060",
+              "question": "How to run Python as a startup script?",
+              "sort_order": 6,
+              "content": "You need to redefine the Python environment variable to that of your user account.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/project/006_a3776dc060_how-to-run-python-as-a-startup-script.md"
+            },
+            {
+              "id": "51bc7e280d",
+              "question": "GCP VM - mkdir: cannot create directory \u2018.ssh\u2019: Permission denied",
+              "sort_order": 108,
+              "content": "If you encounter an error while trying to create a directory:\n\n```bash\nUser1@DESKTOP-PD6UM8A MINGW64 /\n\n$ mkdir .ssh\n\nmkdir: cannot create directory \u2018.ssh\u2019: Permission denied\n```\n\nThis error occurs because you are attempting to create the directory in the root folder (`/`).\n\nTo resolve this, create the directory in your home directory instead. Use the following steps:\n\n1. Navigate to your home directory using:\n   \n   ```bash\n   cd ~\n   ```\n\n2. Create the `.ssh` directory:\n   \n   ```bash\n   mkdir .ssh\n   ```\n\nFor further guidance, watch [this video](https://www.youtube.com/watch?v=ae-CV2KfoN0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb).",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/108_51bc7e280d_gcp-vm-mkdir-cannot-create-directory-ssh-permissio.md"
+            },
+            {
+              "id": "10407876a1",
+              "question": "SSH Error: ssh: Could not resolve hostname linux: Name or service not known",
+              "sort_order": 130,
+              "content": "To resolve this, ensure that your config file is in `C/User/Username/.ssh/config`.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/130_10407876a1_ssh-error-ssh-could-not-resolve-hostname-linux-nam.md"
+            }
+          ],
+          "tool_call_id": "call_9xgoHzoikpohibaxzfWXg3sz",
+          "metadata": null,
+          "timestamp": "2025-10-06T13:34:17.876829+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "To add a startup script to your VM that allows SSH access, follow these steps:\n\n1. Navigate to the **Automation** section of your VM settings in the Google Cloud Platform (GCP) console.\n2. Add the following startup script in the appropriate field:\n\n   ```bash\n   #!/bin/bash\n   sudo ufw allow ssh\n   ```\n\n3. After adding the script, you will need to stop and start your VM for the changes to take effect.\n\nThis script configures the Uncomplicated Firewall (UFW) to allow SSH traffic, which is typically through port 22, enabling you to connect to your VM via SSH once it starts.\n\nFor detailed instructions, you can refer to the source material: [GCP VM: connect to host port 22 no route to host](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-1/111_68f8a4b307_gcp-vm-connect-to-host-port-22-no-route-to-host.md).",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1046,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 216,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T13:34:27+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CNfe7Fr4JGGWESoymJ3JqxVgUYS00",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

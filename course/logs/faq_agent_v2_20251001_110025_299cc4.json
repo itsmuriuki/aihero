@@ -1,0 +1,152 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "What should I do if I encounter an error stating that the Compute Engine API is not enabled during the project setup?",
+          "timestamp": "2025-10-01T11:00:24.286226+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"Compute Engine API not enabled error\"}",
+          "tool_call_id": "call_oTSNobQrnF4RApI9aiol6QHq",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 234,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 19,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-01T11:00:24+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CLorIYmjexmBbDuA8it3Pl9uEVR2k",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "a1f6167da1",
+              "question": "GCP: \"Failed to load\" when accessing Compute Engine\u2019s metadata section (e.g., to add a SSH key)",
+              "sort_order": 100,
+              "content": "You likely didn\u2019t enable the [Compute Engine API](https://console.cloud.google.com/marketplace/details/google/compute.googleapis.com).",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/100_a1f6167da1_gcp-failed-to-load-when-accessing-compute-engines.md"
+            },
+            {
+              "id": "1b03f3dadf",
+              "question": "Set up Chrome Remote Desktop for Linux on Compute Engine",
+              "sort_order": 45,
+              "content": "This [tutorial](https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine?hl=en) shows you how to set up the Chrome Remote Desktop service on a Debian Linux virtual machine (VM) instance on Compute Engine. Chrome Remote Desktop allows you to remotely access applications with a graphical user interface.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/045_1b03f3dadf_set-up-chrome-remote-desktop-for-linux-on-compute.md"
+            },
+            {
+              "id": "5baf3e8a5e",
+              "question": "Docker: Docker engine stopped_failed to fetch extensions",
+              "sort_order": 43,
+              "content": "The Docker engine may crash continuously and fail to work after restart. You might see error messages like \"docker engine stopped\" and \"failed to fetch extensions\" repeatedly on the screen.\n\n**Solution:**\n\n- Check if you have the latest version of Docker installed. Update Docker if necessary.\n- If the problem persists, consider reinstalling Docker.\n  - Note: You will need to fetch images again, but there should be no other issues.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/043_5baf3e8a5e_docker-docker-engine-stopped_failed-to-fetch-exten.md"
+            },
+            {
+              "id": "e34580b954",
+              "images": [
+                {
+                  "description": "image #1",
+                  "id": "image_1",
+                  "path": "images/data-engineering-zoomcamp/image_366e8371.png"
+                },
+                {
+                  "description": "image #2",
+                  "id": "image_2",
+                  "path": "images/data-engineering-zoomcamp/image_ee2aa0ad.png"
+                }
+              ],
+              "question": "Billing: Billing account has not been enabled for this project. But you\u2019ve done it indeed!",
+              "sort_order": 104,
+              "content": "If you\u2019ve got the error:\n\n```plaintext\nError: Error updating Dataset \"projects/<your-project-id>/datasets/demo_dataset\": googleapi: Error 403: Billing has not been enabled for this project. Enable billing at console.cloud.google.com. The default table expiration time must be less than 60 days, billingNotEnabled\n```\n\nbut you\u2019ve set your billing account, try disabling billing for the project and enabling it again. This method has been successful for others.\n\n<{IMAGE:image_1}>\n\n<{IMAGE:image_2}>",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/104_e34580b954_billing-billing-account-has-not-been-enabled-for-t.md"
+            },
+            {
+              "id": "0e8bce921a",
+              "question": "Python Kafka: ./spark-submit.sh streaming.py Error: py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.",
+              "sort_order": 19,
+              "content": "Make sure your Java version is 11 or 8.\n\n- Check your version by:\n\n  ```bash\n  java --version\n  ```\n\n- Check all your installed Java versions by:\n\n  ```bash\n  /usr/libexec/java_home -V\n  ```\n\n- If you already have Java 11 but it's not set as the default, select the specific version by:\n\n  ```bash\n  export JAVA_HOME=$(/usr/libexec/java_home -v 11.0.22)\n  ```\n\n  (or another version of 11)",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-6/019_0e8bce921a_python-kafka-spark-submitsh-streamingpy-error-py4j.md"
+            }
+          ],
+          "tool_call_id": "call_oTSNobQrnF4RApI9aiol6QHq",
+          "metadata": null,
+          "timestamp": "2025-10-01T11:00:25.222173+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "If you encounter an error indicating that the Compute Engine API is not enabled during your project setup, you need to enable the Compute Engine API in your Google Cloud Platform (GCP) project. Here\u2019s how to do it:\n\n1. Go to the [Google Cloud Console](https://console.cloud.google.com/).\n2. Navigate to the **API & Services** section.\n3. Click on **Dashboard**.\n4. Click on **Enable APIs and Services** at the top.\n5. Search for **Compute Engine API**.\n6. Click on it, and then select **Enable** to activate the API for your project.\n\nThis should resolve the error. If you still face issues, ensure that your billing account is set up properly and that you have the necessary permissions for managing APIs in your project.\n\nFor further guidance on this topic, refer to the documentation [here](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-1/100_a1f6167da1_gcp-failed-to-load-when-accessing-compute-engines.md).",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1159,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 228,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-01T11:00:25+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CLorJoTZAWFBdzGcM7Ya4hZGYduYS",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

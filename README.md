@@ -1,8 +1,8 @@
-### AI FAQ Assistant (Streamlit)
+### AI FAQ Assistant
 
-Short, descriptive title: AI FAQ Assistant for GitHub Docs
+Short, descriptive title: AI FAQ Assistant for GitHub Repos
 
-One-liner: A Streamlit chatbot that answers questions about a GitHub repo (DataTalksClub/faq) using semantic search and an LLM.
+One-liner: An agent that answers questions about a GitHub repo (DataTalksClub/faq) using semantic search and an LLM.
 
 Badges: ![Python](https://img.shields.io/badge/Python-3.12-blue) ![Streamlit](https://img.shields.io/badge/Streamlit-1.50.0-ff4b4b) ![License](https://img.shields.io/badge/License-MIT-green)
 
@@ -19,7 +19,6 @@ Optional visuals: Add a screenshot or GIF of the Streamlit app here.
 ## Installation
 
 ### Requirements
-- **OS**: macOS, Linux, or Windows
 - **Python**: 3.12
 - **Package manager**: Poetry
 - **Environment variable**: `OPENAI_API_KEY`
@@ -29,7 +28,7 @@ Optional visuals: Add a screenshot or GIF of the Streamlit app here.
 
 ```bash
 git clone <your-fork-or-repo-url>
-cd projects/app
+cd /aihero/projects/app
 ```
 
 2) Install dependencies with Poetry:
@@ -42,7 +41,6 @@ poetry install
 
 ```bash
 export OPENAI_API_KEY="sk-..."   # macOS/Linux
-setx OPENAI_API_KEY "sk-..."     # Windows (new shell required)
 ```
 
 If you see a Watchdog performance message on macOS, you can optionally install:

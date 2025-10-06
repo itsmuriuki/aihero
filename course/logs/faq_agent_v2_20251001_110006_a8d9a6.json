@@ -1,0 +1,204 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "Can I change the display name on the leaderboard for the data engineering course, and how do I ensure my certificate is issued with my actual name?",
+          "timestamp": "2025-10-01T11:00:04.513981+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\": \"change display name leaderboard data engineering course\"}",
+          "tool_call_id": "call_OSPrIRmsAzAil5ynFeSC90OY",
+          "part_kind": "tool-call"
+        },
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\": \"ensure certificate issued actual name\"}",
+          "tool_call_id": "call_bqWAfRMt4OJgPzh8ySP1swp9",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 240,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 54,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-01T11:00:05+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CLoqzyG4ZZSXp9YCN1PVOfGcFZuBG",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "16005581f2",
+              "question": "Edit Course Profile.",
+              "sort_order": 13,
+              "content": "The display name listed on the leaderboard is an auto-generated randomized name. You can edit it to be a nickname or your real name if you prefer. Your entry on the Leaderboard is the one highlighted in light green.\n\nThe Certificate name should be your actual name that you want to appear on your certificate after completing the course.\n\nThe \"Display on Leaderboard\" option indicates whether you want your name to be listed on the course leaderboard.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/013_16005581f2_edit-course-profile.md"
+            },
+            {
+              "id": "7255a1c3bc",
+              "images": [
+                {
+                  "description": "image #1",
+                  "id": "image_1",
+                  "path": "images/data-engineering-zoomcamp/image_813348b4.png"
+                }
+              ],
+              "question": "Leaderboard: how do find myself on the leaderboard?",
+              "sort_order": 20,
+              "content": "When you set up your account, you are automatically assigned a random name, such as \"Lucid Elbakyan.\" If you want to see what your display name is, follow these steps:\n\n- Go to your profile.\n  - 2025: [https://courses.datatalks.club/de-zoomcamp-2025/enrollment](https://courses.datatalks.club/de-zoomcamp-2025/enrollment)\n  - 2024: [https://courses.datatalks.club/de-zoomcamp-2024/enrollment](https://courses.datatalks.club/de-zoomcamp-2025/enrollment)\n- Log in.\n- Your display name is shown. You can also change it if you wish. \n- Ensure your certificate name is correct, as this name will later be printed on your certificate.\n\n<{IMAGE:image_1}>",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/020_7255a1c3bc_leaderboard-how-do-find-myself-on-the-leaderboard.md"
+            },
+            {
+              "id": "bfafa427b3",
+              "question": "Course: What are the prerequisites for this course?",
+              "sort_order": 2,
+              "content": "To get the most out of this course, you should have:\n\n- Basic coding experience\n- Familiarity with SQL\n- Experience with Python (helpful but not required)\n\nNo prior data engineering experience is necessary. See [Readme on GitHub](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/README.md#prerequisites).",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/002_bfafa427b3_course-what-are-the-prerequisites-for-this-course.md"
+            },
+            {
+              "id": "05727a95dd",
+              "question": "Homework and Leaderboard: What is the system for points in the course management",
+              "sort_order": 18,
+              "content": "After you submit your homework, it will be graded based on the number of questions in that particular assignment. You can see the number of points you have earned at the top of the homework page. Additionally, in the [leaderboard](https://courses.datatalks.club/de-zoomcamp-2025/leaderboard), you will find the sum of all points you've earned: points for Homeworks, FAQs, and Learning in Public.\n\nPoint System Overview:\n\n- **Homework:** Points vary by assignment based on the number of questions.\n- **FAQ Contribution:** You get a maximum of 1 point for contributing to the FAQ in the respective week.\n- **Learning in Public:** For each learning in public link, you earn one point. You can achieve a maximum of 7 points.\n\nCheck this [video](https://www.loom.com/share/710e3297487b409d94df0e8da1c984ce) for more details.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/05727a95dd_homework-and-leaderboard-wha.md"
+            },
+            {
+              "id": "9e508f2212",
+              "question": "Course: When does the course start?",
+              "sort_order": 1,
+              "content": "The next cohort starts January 13th, 2025. More info at [DTC](https://datatalks.club/blog/guide-to-free-online-courses-at-datatalks-club.html).\n\n- Register before the course starts using this [link](https://airtable.com/shr6oVXeQvSI5HuWD).\n- Join the [course Telegram channel with announcements](https://t.me/dezoomcamp).\n- Don\u2019t forget to register in DataTalks.Club's Slack and join the channel.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/001_9e508f2212_course-when-does-the-course-start.md"
+            }
+          ],
+          "tool_call_id": "call_OSPrIRmsAzAil5ynFeSC90OY",
+          "metadata": null,
+          "timestamp": "2025-10-01T11:00:05.643772+00:00",
+          "part_kind": "tool-return"
+        },
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "3774a79c13",
+              "question": "Certificate: Do I need to do the homeworks to get the certificate?",
+              "sort_order": 14,
+              "content": "No, as long as you complete the peer-reviewed capstone projects on time, you can receive the certificate. You do not need to do the homeworks if you join late, for example.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/014_3774a79c13_certificate-do-i-need-to-do-the-homeworks-to-get-t.md"
+            },
+            {
+              "id": "6314bc3029",
+              "images": [
+                {
+                  "description": "image #1",
+                  "id": "image_1",
+                  "path": "images/data-engineering-zoomcamp/image_1813f02b.png"
+                }
+              ],
+              "question": "How do I get my certificate?",
+              "sort_order": 46,
+              "content": "There'll be an announcement in Telegram and the course channel for:\n\n- Checking that your full name is displayed correctly on the Certificate (see Editing course profile on the Course Management webpage).\n- Notifying when the grading is completed.\n\nYou will find it in your course profile (you need to be\nlogged it). \n\nFor 2025 the link to the course profile is this:\n\n`https://courses.datatalks.club/de-zoomcamp-2025/enrollment`\n\nFor other editions, change \"2025\" to your edition.\n\nAfter the second announcement, follow instructions in [certificates.md](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/certificates.md) on how to generate the Certificate document yourself.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/046_6314bc3029_how-do-i-get-my-certificate.md"
+            },
+            {
+              "id": "900f60fd25",
+              "question": "Certificate - Can I follow the course in a self-paced mode and get a certificate?",
+              "sort_order": 15,
+              "content": "No, you can only get a certificate if you finish the course with a \u201clive\u201d cohort. We don't award certificates for the self-paced mode. The reason is you need to peer-review capstone(s) after submitting a project. You can only peer-review projects at the time the course is running.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/015_900f60fd25_certificate-can-i-follow-the-course-in-a-self-pace.md"
+            },
+            {
+              "id": "542abbcb6a",
+              "question": "wget - ERROR: cannot verify <website> certificate  (MacOS)",
+              "sort_order": 6,
+              "content": "Firstly, make sure that you add `!` before `wget` if you\u2019re running your command in a Jupyter Notebook or CLI. Then, you can check one of these two things (from CLI):\n\n- **Using the Python library wget installed with pip:**\n\n  ```bash\n  python -m wget <url>\n  ```\n\n- **Use the usual command and add `--no-check-certificate` at the end:**\n\n  ```bash\n  !wget <website_url> --no-check-certificate\n  ```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/006_542abbcb6a_wget-error-cannot-verify-website-certificate-macos.md"
+            },
+            {
+              "id": "1700cb2bd4",
+              "question": "Docker: ingestion when using docker-compose could not translate host name",
+              "sort_order": 31,
+              "content": "Typical error:\n```python\nn.exc.OperationalError: (psycopg2.OperationalError) could not translate host name \"pgdatabase\" to address: Name or service not known\n```\n\n**Solution:**\n\n1. Run `docker-compose up -d` to start your containers.\n2. Check which network is created by Docker, as it may differ from your expectations.\n3. Use the actual network name in your ingestion script instead of \"pg-network\".\n4. Confirm the correct database service name, replacing \"pgdatabase\" accordingly.\n\n**Example:**\n- \"pg-network\" might become \"2docker_default\".",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/031_1700cb2bd4_docker-ingestion-when-using-docker-compose-could-n.md"
+            }
+          ],
+          "tool_call_id": "call_bqWAfRMt4OJgPzh8ySP1swp9",
+          "metadata": null,
+          "timestamp": "2025-10-01T11:00:05.643702+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "Yes, you can change your display name on the leaderboard for the data engineering course. Initially, you are assigned a random name, but you can edit it to be a nickname or your real name. To do this, go to your profile after logging in to the course platform, and you will see the option to change your display name. The entry on the leaderboard that you want to highlight is the one shown in light green.\n\nRegarding your certificate, it is important to ensure that your actual name is displayed correctly. This will be the name that appears on your certificate after completing the course. You can check the correct name in your profile and make any necessary edits there. Once everything is set, there will be announcements in the course channel to notify you when your grading is completed and when to check your certificate name once again.\n\nFor details on adjusting your profile and obtaining your certificate, you can refer to the following sources:\n- [Edit Course Profile](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/general/013_16005581f2_edit-course-profile.md)\n- [How do I get my certificate?](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/general/046_6314bc3029_how-do-i-get-my-certificate.md)",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2326,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 280,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-01T11:00:06+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CLor0SVD0B6gCUuTB81lhTzbFRaU9",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "Why do I get a resourceInUse error when trying to destroy a dataset with Terraform, and how can I fix it?",
+          "timestamp": "2025-10-06T13:33:22.150255+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"resourceInUse error when trying to destroy a dataset with Terraform\"}",
+          "tool_call_id": "call_lKpoDVzkvNFD1eZFSf8Z9eKm",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 236,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 25,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T13:33:22+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CNfd4En9ri0I3gr9hFDG6tndq1NVN",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "9f9a1b9e4f",
+              "question": "Terraform: Teardown of BigQuery Dataset",
+              "sort_order": 126,
+              "content": "When running `terraform destroy`, the following error can occur:\n\n```\nDo you really want to destroy all resources?\n\nTerraform will destroy all your managed infrastructure, as shown above.\n\nThere is no undo. Only 'yes' will be accepted to confirm.\n\nEnter a value: yes\n\ngoogle_bigquery_dataset.homework_dataset: Destroying... [id=projects/terraform-demo-449214/datasets/homework_dataset]\n\n\u2577\n\n\u2502 Error: Error when reading or editing Dataset: googleapi: Error 400: Dataset terraform-demo-449214:homework_dataset is still in use, resourceInUse\n```\n\nThis is because the dataset is still in use by a table. To delete the dataset, set the `delete_contents_on_destroy` property to `true` in the `main.tf` file.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/126_9f9a1b9e4f_terraform-teardown-of-bigquery-dataset.md"
+            },
+            {
+              "id": "76f95c1d28",
+              "question": "Terraform: Terraform initialized in an empty directory! The directory has no Terraform configuration files. You may begin working with Terraform immediately by creating Terraform configuration files.",
+              "sort_order": 122,
+              "content": "This error occurs when `terraform init` is run outside the working directory.\n\nTo resolve this issue:\n\n1. Navigate to the working directory that contains your Terraform configuration files.\n2. Run the `terraform init` command inside the correct directory.\n\nMake sure your configuration files (e.g., .tf files) are present in the directory before running the command.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/122_76f95c1d28_terraform-terraform-initialized-in-an-empty-direct.md"
+            },
+            {
+              "id": "fee87c684a",
+              "question": "DBT Deploy: Error When trying to run the dbt project on Prod",
+              "sort_order": 69,
+              "content": "When running the dbt project on production, ensure the following steps:\n\n1. **Pull Request and Merge**\n   - Make the pull request and merge the branch into the main.\n\n2. **Version Check**\n   - Ensure you have the latest version if changes were made to the repository elsewhere.\n\n3. **Project File Accessibility**\n   - Verify that the `dbt_project.yml` file is accessible to the project. If not, refer to the solution for the error: \"Dbt: This dbt Cloud run was cancelled because a valid dbt project was not found.\"\n\n4. **Dataset Consistency**\n   - Confirm that the name assigned to the dataset on BigQuery matches the name specified in the production environment configuration on dbt Cloud.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-4/069_fee87c684a_dbt-deploy-error-when-trying-to-run-the-dbt-projec.md"
+            },
+            {
+              "id": "c18119ba32",
+              "question": "Invalid dataset ID Error when running the gcp_setup flow",
+              "sort_order": 10,
+              "content": "When following the [YouTube lesson](https://www.youtube.com/watch?v=nKqjjLJ7YXs&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=23) and then running the [gcp_setup flow](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/02-workflow-orchestration/flows/05_gcp_setup.yaml), the error occurs during the `create_bq_dataset` task.\n\nThe error is less clear, but it stems from using a dash in the dataset name. To resolve this, change the dataset name to something like \"de_zoomcamp\" to avoid using a dash. This should resolve the error.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-2/010_c18119ba32_invalid-dataset-id-error-when-running-the-gcp_setu.md"
+            },
+            {
+              "id": "4a6d04a2c3",
+              "question": "Terraform - Error creating Dataset: googleapi: Error 403: Request had insufficient authentication scopes",
+              "sort_order": 123,
+              "content": "The error:\n\n```\nError: googleapi: Error 403: Access denied., forbidden\n\nError: Error creating Dataset: googleapi: Error 403: Request had insufficient authentication scopes.\n```\n\nSolution:\n\n1. Verify your credentials by running:\n   \n   ```bash\n   echo $GOOGLE_APPLICATION_CREDENTIALS\n   echo $?\n   ```\n\n2. Ensure you have set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable correctly, as demonstrated in the environment setup video in week 1:\n\n   ```bash\n   export GOOGLE_APPLICATION_CREDENTIALS=\"<path/to/your/service-account-authkeys>.json\"\n   ```",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/module-1/123_4a6d04a2c3_terraform-error-creating-dataset-googleapi-error-4.md"
+            }
+          ],
+          "tool_call_id": "call_lKpoDVzkvNFD1eZFSf8Z9eKm",
+          "metadata": null,
+          "timestamp": "2025-10-06T13:33:23.731649+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "The `resourceInUse` error when trying to destroy a dataset with Terraform typically occurs because the dataset is still in use by another resource, such as a table. To resolve this issue, you need to configure the `delete_contents_on_destroy` property in your Terraform configuration.\n\nHere\u2019s how you can fix it:\n\n1. Open your `main.tf` file where the dataset is defined.\n2. Set the `delete_contents_on_destroy` property to `true` for the corresponding BigQuery dataset resource.\n\nHere is an example of how it should look:\n\n```hcl\nresource \"google_bigquery_dataset\" \"homework_dataset\" {\n  dataset_id = \"homework_dataset\"\n  // Add other necessary configurations here\n  \n  delete_contents_on_destroy = true\n}\n```\n\nAfter making this change, run `terraform apply` to ensure that the configuration is updated, and then try running `terraform destroy` again. This should allow you to successfully destroy the dataset without encountering the `resourceInUse` error.\n\nFor more details, you can refer to the specific source [here](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/module-1/126_9f9a1b9e4f_terraform-teardown-of-bigquery-dataset.md).",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1379,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 268,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T13:33:24+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CNfd6WJRfk7As2rtybnPIiiB7rVbR",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}

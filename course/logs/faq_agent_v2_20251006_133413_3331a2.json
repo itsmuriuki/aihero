@@ -1,0 +1,140 @@
+{
+  "agent_name": "faq_agent_v2",
+  "system_prompt": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "text_search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "What prerequisites do I need to set up before starting the data engineering course?",
+          "timestamp": "2025-10-06T13:34:12.427356+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "args": "{\"query\":\"prerequisites for data engineering course\"}",
+          "tool_call_id": "call_CO2pE7Ls7t2zwyVuvggZZ4zf",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 226,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 20,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T13:34:13+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CNfdt9ZTGfoMebefYIKSF4IwljtBn",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "text_search",
+          "content": [
+            {
+              "id": "bfafa427b3",
+              "question": "Course: What are the prerequisites for this course?",
+              "sort_order": 2,
+              "content": "To get the most out of this course, you should have:\n\n- Basic coding experience\n- Familiarity with SQL\n- Experience with Python (helpful but not required)\n\nNo prior data engineering experience is necessary. See [Readme on GitHub](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/README.md#prerequisites).",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/002_bfafa427b3_course-what-are-the-prerequisites-for-this-course.md"
+            },
+            {
+              "id": "33fc260cd8",
+              "question": "Course: What can I do before the course starts?",
+              "sort_order": 5,
+              "content": "Start by installing and setting up all the dependencies and requirements:\n\n- Google Cloud account\n- Google Cloud SDK\n- Python 3 (installed with Anaconda)\n- Terraform\n- Git\n\nLook over the prerequisites and syllabus to see if you are comfortable with these subjects.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/005_33fc260cd8_course-what-can-i-do-before-the-course-starts.md"
+            },
+            {
+              "id": "9e508f2212",
+              "question": "Course: When does the course start?",
+              "sort_order": 1,
+              "content": "The next cohort starts January 13th, 2025. More info at [DTC](https://datatalks.club/blog/guide-to-free-online-courses-at-datatalks-club.html).\n\n- Register before the course starts using this [link](https://airtable.com/shr6oVXeQvSI5HuWD).\n- Join the [course Telegram channel with announcements](https://t.me/dezoomcamp).\n- Don\u2019t forget to register in DataTalks.Club's Slack and join the channel.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/001_9e508f2212_course-when-does-the-course-start.md"
+            },
+            {
+              "id": "52217fc51b",
+              "question": "Course: I have registered for the Data Engineering Bootcamp. When can I expect to receive the confirmation email?",
+              "sort_order": 4,
+              "content": "You don't need a confirmation email. You're accepted. You can start learning and submitting homework without registering. Registration was just to gauge interest before the start date.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/004_52217fc51b_course-i-have-registered-for-the-data-engineering.md"
+            },
+            {
+              "id": "068529125b",
+              "question": "Course - Can I follow the course after it finishes?",
+              "sort_order": 8,
+              "content": "Yes, we will keep all the materials available, so you can follow the course at your own pace after it finishes.\n\nYou can also continue reviewing the homeworks and prepare for the next cohort. You can also start working on your final capstone project.",
+              "filename": "faq-main/_questions/data-engineering-zoomcamp/general/008_068529125b_course-can-i-follow-the-course-after-it-finishes.md"
+            }
+          ],
+          "tool_call_id": "call_CO2pE7Ls7t2zwyVuvggZZ4zf",
+          "metadata": null,
+          "timestamp": "2025-10-06T13:34:13.117728+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant for a course.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.  \nWhen citing the reference, replace \"faq-main\" by the full path to the GitHub repository: \"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "Before starting the data engineering course, you should meet the following prerequisites:\n\n1. **Basic coding experience**\n2. **Familiarity with SQL**\n3. **Experience with Python** (helpful but not mandatory)\n\nNo prior data engineering experience is required.\n\nAdditionally, here are some steps you can take to prepare before the course starts:\n\n- Set up a **Google Cloud account** and install the **Google Cloud SDK**.\n- Ensure you have **Python 3** installed (recommended to use Anaconda).\n- Install **Terraform** and **Git**.\n\nYou can check more details in the [Course Prerequisites](https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/README.md#prerequisites) and what you can do before the course starts [here](https://github.com/DataTalksClub/faq/blob/main/faq-main/_questions/data-engineering-zoomcamp/general/005_33fc260cd8_course-what-can-i-do-before-the-course-starts.md).",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 911,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 208,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T13:34:13+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CNfdtqAe6h6FEkN3yXCnUXBCjhSCQ",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "ai-generated"
+}
