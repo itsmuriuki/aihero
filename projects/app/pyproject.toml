@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = ""
+authors = ["itsmuriuki <grdmuriuki@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+minsearch = ">=0.0.5"
+openai = ">=1.108.2"
+pydantic-ai = "==1.0.9"
+python-frontmatter = ">=1.1.0"
+requests = ">=2.32.5"
+streamlit = "^1.50.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

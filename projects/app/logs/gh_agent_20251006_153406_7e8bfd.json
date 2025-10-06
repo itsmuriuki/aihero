@@ -1,0 +1,148 @@
+{
+  "agent_name": "gh_agent",
+  "system_prompt": "You are a helpful assistant that answers questions about documentation.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.\nReplace it with the full path to the GitHub repository:\n\"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "tools": [
+    "search"
+  ],
+  "messages": [
+    {
+      "parts": [
+        {
+          "content": "errors o'm likely to get?",
+          "timestamp": "2025-10-06T15:34:03.898881+00:00",
+          "part_kind": "user-prompt"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers questions about documentation.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.\nReplace it with the full path to the GitHub repository:\n\"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "args": "{\"query\":\"common errors\"}",
+          "tool_call_id": "call_4q1iu3q8cvEQ8qZkcAey3kj7",
+          "part_kind": "tool-call"
+        }
+      ],
+      "usage": {
+        "input_tokens": 209,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 14,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T15:34:05+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "tool_calls"
+      },
+      "provider_response_id": "chatcmpl-CNhVtakBE4n3cgmvsEA528ftLZTfN",
+      "finish_reason": "tool_call"
+    },
+    {
+      "parts": [
+        {
+          "tool_name": "search",
+          "content": [
+            {
+              "id": "faddbcb675",
+              "question": "Join Error on LocationID: \"Unable to find common supertype for templated argument\"",
+              "sort_order": 77,
+              "content": "No matching signature for operator `=` for argument types: `STRING`, `INT64`\n\n**Signature**: `T1 = T1`\n\n**Error:** Unable to find common supertype for templated argument.\n\n**Solution:**\n\nMake sure the `LocationID` field is of the same type in both tables. If it is in string format in one table, use the following dbt code to convert it to an integer:\n\n```sql\n{{ dbt.safe_cast(\"PULocationID\", api.Column.translate_type(\"integer\")) }} as pickup_locationid\n```",
+              "filename": "_questions/data-engineering-zoomcamp/module-4/077_faddbcb675_join-error-on-locationid-unable-to-find-common-sup.md"
+            },
+            {
+              "id": "1f4fd984f5",
+              "question": "Data type errors when ingesting with parquet files",
+              "sort_order": 49,
+              "content": "The easiest way to avoid these errors is by ingesting the relevant data in a `.csv.gz` file type. Then, do:\n\n```sql\nCREATE OR REPLACE EXTERNAL TABLE `dtc-de.trips_data_all.fhv_tripdata`\nOPTIONS (\n  format = 'CSV',\n  uris = ['gs://dtc_data_lake_dtc-de-updated/data/fhv_all/fhv_tripdata_2019-*.csv.gz']\n);\n```\n\nThis example should help you avoid data type issues for week 4.",
+              "filename": "_questions/data-engineering-zoomcamp/module-4/049_1f4fd984f5_data-type-errors-when-ingesting-with-parquet-files.md"
+            },
+            {
+              "id": "89733da275",
+              "images": [
+                {
+                  "description": "image #1",
+                  "id": "image_1",
+                  "path": "images/data-engineering-zoomcamp/image_c3c0865e.png"
+                }
+              ],
+              "question": "dbt: macro errors with get_payment_type_description(payment_type)",
+              "sort_order": 39,
+              "content": "You will face this issue if you copied and pasted the exact macro directly from the data-engineering-zoomcamp repo.\n\n### Error Message\n\n```\nBigQuery adapter: Retry attempt 1 of 1 after error: BadRequest('No matching signature for operator CASE for argument types: STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, NULL at [35:5]; reason: invalidQuery, location: query, message: No matching signature for operator CASE for argument types: STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, INT64, STRING, NULL at [35:5]')\n```\n\n### Solution\n\nTo resolve this issue, change the data type of the numbers (1, 2, 3, etc.) to text by enclosing them in quotes. The `payment_type` data type should be a string.\n\n#### Updated Macro\n\n```jinja\n{#\nThis macro returns the description of the payment_type\n#}\n\n{% macro get_payment_type_description(payment_type) -%}\n\ncase {{ payment_type }}\n\nwhen '1' then 'Credit card'\n\nwhen '2' then 'Cash'\n\nwhen '3' then 'No charge'\n\nwhen '4' then 'Dispute'\n\nwhen '5' then 'Unknown'\n\nwhen '6' then 'Voided trip'\n\nend\n\n{%- endmacro %}\n```\n\n<{IMAGE:image_1}>",
+              "filename": "_questions/data-engineering-zoomcamp/module-4/039_89733da275_dbt-macro-errors-with-get_payment_type_description.md"
+            },
+            {
+              "id": "73876c8348",
+              "images": null,
+              "question": "Docker-Compose: Errors pertaining to docker-compose.yml and pgadmin setup",
+              "sort_order": 48,
+              "content": "For those experiencing problems with Docker Compose, getting data in PostgreSQL, and similar issues, follow these steps:\n\n- **Create a new volume** on Docker, either using the command line or Docker Desktop app.\n- **Modify your `docker-compose.yml` file** as needed to fix any setup issues.\n- **Set `low_memory=False`** when importing the CSV file using pandas:\n  \n```python\ndf = pd.read_csv('yellow_tripdata_2021-01.csv', nrows=1000, low_memory=False)\n```\n\n- Use the specified function in your `upload-data.ipynb` for better tracking of the ingestion process.\n\n```python\nfrom time import time\n\ncounter = 0\ntime_counter = 0\n\nwhile True:\n    t_start = time()\n\n    df = next(df_iter)\n\n    df.tpep_pickup_datetime = pd.to_datetime(df.tpep_pickup_datetime)\n    df.tpep_dropoff_datetime = pd.to_datetime(df.tpep_dropoff_datetime)\n\n    df.to_sql(name='yellow_taxi_data', con=engine, if_exists='append')\n\n    t_end = time()\n\n    t_elapsed = t_end - t_start\n\n    print('Chunk Insertion Done! Time taken: %.2f seconds' %(t_elapsed))\n\n    counter += 1\n    time_counter += t_elapsed\n\n    if counter == 14:\n        print('All Chunks Inserted! Total Time Taken: %.2f seconds' %(time_counter))\n        break\n```\n\n### Order of Execution:\n\n1. Open the terminal in the `2_docker_sql` folder and run: `docker compose up`\n2. Ensure no other containers are running except the ones you just executed (pgAdmin and pgdatabase).\n3. Open Jupyter Notebook and begin the data ingestion.\n4. Open pgAdmin and set up a server. Make sure you use the same configurations as your `docker-compose.yml` file, such as the same name (`pgdatabase`), port, and database name (`ny_taxi`).",
+              "filename": "_questions/data-engineering-zoomcamp/module-1/048_73876c8348_docker-compose-errors-pertaining-to-docker-compose.md"
+            },
+            {
+              "id": "d01cbfa9cb",
+              "question": "Java Kafka: <project_name>-1.0-SNAPSHOT.jar errors: package xxx does not exist even after gradle build",
+              "sort_order": 20,
+              "content": "In my setup, all of the dependencies listed in `build.gradle` were not installed in `<project_name>-1.0-SNAPSHOT.jar`.\n\nSolution:\n\n1. In the `build.gradle` file, add the following at the end:\n   \n   ```groovy\n   shadowJar {\n       archiveBaseName = \"java-kafka-rides\"\n       archiveClassifier = ''\n   }\n   ```\n\n2. In the command line, run:\n   \n   ```bash\n   gradle shadowjar\n   ```\n\n3. Execute the script from `java-kafka-rides-1.0-SNAPSHOT.jar` created by the shadowjar.",
+              "filename": "_questions/data-engineering-zoomcamp/module-6/020_d01cbfa9cb_java-kafka-project_name-10-snapshotjar-errors-pack.md"
+            }
+          ],
+          "tool_call_id": "call_4q1iu3q8cvEQ8qZkcAey3kj7",
+          "metadata": null,
+          "timestamp": "2025-10-06T15:34:06.456299+00:00",
+          "part_kind": "tool-return"
+        }
+      ],
+      "instructions": "You are a helpful assistant that answers questions about documentation.  \n\nUse the search tool to find relevant information from the course materials before answering questions.  \n\nIf you can find specific information through search, use it to provide accurate answers.\n\nAlways include references by citing the filename of the source material you used.\nReplace it with the full path to the GitHub repository:\n\"https://github.com/DataTalksClub/faq/blob/main/\"\nFormat: [LINK TITLE](FULL_GITHUB_LINK)\n\n\nIf the search doesn't return relevant results, let the user know and provide general guidance.",
+      "kind": "request"
+    },
+    {
+      "parts": [
+        {
+          "content": "Here are some common errors you might encounter along with their solutions:\n\n1. **Join Error on LocationID: \"Unable to find common supertype for templated argument\"**  \n   **Error:** No matching signature for operator `=` for argument types: `STRING`, `INT64`.  \n   **Solution:** Ensure that the `LocationID` field is of the same type in both tables. You can convert it to an integer in your dbt code:\n   ```sql\n   {{ dbt.safe_cast(\"PULocationID\", api.Column.translate_type(\"integer\")) }} as pickup_locationid\n   **Source:** [Join Error on LocationID](https://github.com/DataTalksClub/faq/blob/main/_questions/data-engineering-zoomcamp/module-4/077_faddbcb675_join-error-on-locationid-unable-to-find-common-sup.md)\n\n2. **Data Type Errors When Ingesting with Parquet Files**  \n   **Solution:** To avoid these errors, it\u2019s recommended to ingest data in a `.csv.gz` file format. Example:\n   ```sql\n   CREATE OR REPLACE EXTERNAL TABLE `dtc-de.trips_data_all.fhv_tripdata`\n   OPTIONS (\n     format = 'CSV',\n     uris = ['gs://dtc_data_lake_dtc-de-updated/data/fhv_all/fhv_tripdata_2019-*.csv.gz']\n   );\n   **Source:** [Data Type Errors with Parquet Files](https://github.com/DataTalksClub/faq/blob/main/_questions/data-engineering-zoomcamp/module-4/049_1f4fd984f5_data-type-errors-when-ingesting-with-parquet-files.md)\n\n3. **dbt Macro Errors with `get_payment_type_description(payment_type)`**  \n   **Error:** BadRequest due to no matching signature for operator CASE for argument types.  \n   **Solution:** Change the data type of numbers to text by enclosing them in quotes. Updated macro:\n   ```jinja\n   {% macro get_payment_type_description(payment_type) -%}\n   case {{ payment_type }}\n   when '1' then 'Credit card'\n   when '2' then 'Cash'\n   when '3' then 'No charge'\n   ...\n   end\n   {%- endmacro %}\n   **Source:** [dbt Macro Errors](https://github.com/DataTalksClub/faq/blob/main/_questions/data-engineering-zoomcamp/module-4/039_89733da275_dbt-macro-errors-with-get_payment_type_description.md)\n\n4. **Docker-Compose Errors Pertaining to `docker-compose.yml`**  \n   **Solution:** \n   - Create a new volume on Docker.\n   - Modify your `docker-compose.yml` accordingly.\n   - Set `low_memory=False` in your pandas CSV import:\n   ```python\n   df = pd.read_csv('yellow_tripdata_2021-01.csv', nrows=1000, low_memory=False)\n   ...\n   ```\n   **Source:** [Docker-Compose Errors](https://github.com/DataTalksClub/faq/blob/main/_questions/data-engineering-zoomcamp/module-1/048_73876c8348_docker-compose-errors-pertaining-to-docker-compose.md)\n\n5. **Java Kafka - `<project_name>-1.0-SNAPSHOT.jar` Errors**  \n   **Error:** Package does not exist even after gradle build.  \n   **Solution:** Update the `build.gradle` with shadowJar configuration and execute the command to create the shadow jar:\n   ```bash\n   gradle shadowjar\n   ```\n   **Source:** [Java Kafka Errors](https://github.com/DataTalksClub/faq/blob/main/_questions/data-engineering-zoomcamp/module-6/020_d01cbfa9cb_java-kafka-project_name-10-snapshotjar-errors-pack.md)\n\nThese are just a few examples, but they should help you troubleshoot common errors you may encounter during your projects.",
+          "id": null,
+          "part_kind": "text"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1816,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0,
+        "output_tokens": 814,
+        "input_audio_tokens": 0,
+        "cache_audio_read_tokens": 0,
+        "output_audio_tokens": 0,
+        "details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "model_name": "gpt-4o-mini-2024-07-18",
+      "timestamp": "2025-10-06T15:34:06+00:00",
+      "kind": "response",
+      "provider_name": "openai",
+      "provider_details": {
+        "finish_reason": "stop"
+      },
+      "provider_response_id": "chatcmpl-CNhVuXGiIJbOFo6SWP4IZAfjAXFle",
+      "finish_reason": "stop"
+    }
+  ],
+  "source": "user"
+}
