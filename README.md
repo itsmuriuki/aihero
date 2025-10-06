@@ -186,6 +186,39 @@ aihero/projects
 
 ---
 
+## 🧪 Evaluations
+
+We evaluate the agent using the following criteria:
+
+- **instructions_follow**: The agent followed the user's instructions
+- **instructions_avoid**: The agent avoided doing things it was told not to do
+- **answer_relevant**: The response directly addresses the user's question
+- **answer_clear**: The answer is clear and correct
+- **answer_citations**: The response includes proper citations or sources when required
+- **completeness**: The response is complete and covers all key aspects of the request
+- **tool_call_search**: Is the search tool invoked?
+
+We do this in two steps:
+
+1. First, we generate synthetic questions (see `eval/data-gen.ipynb`)
+2. Next, we run our agent on the generated questions and check the criteria (see `eval/evaluations.ipynb`)
+
+### Current evaluation metrics
+
+```
+instructions_follow    79.3
+instructions_avoid     96.3
+answer_relevant        100.0
+answer_clear           100.0
+answer_citations       74.1
+completeness           100.0
+tool_call_search       88.9
+```
+
+The most important metric for this project is **answer_relevant**. This measures whether the system's answer is relevant to the user. It's currently 100%, meaning all answers were relevant.
+
+---
+
 ## 🤝 Contributing
 
 We welcome contributions!
