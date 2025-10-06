@@ -51,8 +51,8 @@ Repomentor is an intelligent AI-powered assistant that helps developers understa
 2. **Install dependencies**
 
    ```bash
-   # Using uv (recommended)
-   uv sync
+   # Using poetry (recommended)
+   poetry install
 
    # Or using pip
    pip install -r requirements.txt
@@ -201,7 +201,7 @@ We welcome contributions!
 3. Install development dependencies:
 
    ```bash
-   uv sync --group dev
+   poetry install
    ```
 4. Run tests:
 
