@@ -294,10 +294,10 @@ The MIT License allows for:
 
 ---
 
-## 📞 Contact & Support
+## Support
 
-* **GitHub Issues**: [Report bugs or request features](https://github.com/itsmuriuki/aihero/issues)
-* **GitHub Discussions**: [Ask questions and join discussions](https://github.com/itsmuriuki/aiheri/discussions)
+* **GitHub Issues**: [Report bugs or request features](https://github.com/itsmuriuki/RepoMentor/issues)
+* **GitHub Discussions**: [Ask questions and join discussions](https://github.com/itsmuriuki/RepoMentor/discussions)
 * **Documentation**: Check this README and inline code documentation.
 
 ### Author
