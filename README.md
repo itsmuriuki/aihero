@@ -305,9 +305,9 @@ The MIT License allows for:
 **Gerald Muriuki**
 
 * GitHub: [@itsmuriuki](https://github.com/itsmuriuki)
-* Repository: [aihero](https://github.com/itsmuriuki/aihero)
+* Repository: [RepoMentor](https://github.com/itsmuriuki/RepoMentor)
 
 ---
 
-**Built with ❤️ for developers, by developers**
+
 *Transform how you understand and interact with GitHub repositories* 🚀
